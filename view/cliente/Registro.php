@@ -35,16 +35,7 @@
 
 </head>
 <body>
-	<!--barra de navegacion que contiene los accesos directos a los demas en laces a los demas apartados de la pagina web
-	-navbar-xpanda=hace que se expandan los elemtaros de la barra al agranadar la pantalla,
-	-sticky-top=hace que la barra se quede pegada al desplazar la pnatalla
-	-mr-auto=ajuste de margenes automatico
-	-text-center=centr los textos dentro del menu de amburguesa
-	-d-flex justify contetnt-around=separa dos botones dentro del menu de hamburguesa
-     -ml-auto=centra los textos de la barra
-     m-2= clase que ayuda arealizar un epsaciado de 2 pixeles o deenediedo del numero de margen que deseas
-     text-justify=acomoda de mejor manera el texto en los parrafos
-    text-capitalize=coloca de manera automatica las mayusculas-->
+	
 
 <nav class="navbar navbar-dark bg-secondary  navbar-expand-md ">
 	 <!--logo y texto-->
@@ -76,11 +67,7 @@
      <a class="nav-item nav-link  text-dark" href="#">Ubicaciones del servicio</a>
       <a class="nav-item nav-link  text-dark" href="#">Conocenos</a>
     </div>
-    <!-- div class="d-flex justify-content-center ">
-    	<a href="" class="btn btn-secondary mr-2 mr-sm-2">Registrate</a>
-    	<a href="" class="btn btn-secondary	">Login</a>
-    </div>
-   </div>-->
+    
 </nav>
 <!--fin de nabvar-->
 
