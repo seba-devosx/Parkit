@@ -46,7 +46,7 @@ class clienteController{
             ? $this->model->Actualizar($cliente)
             : $this->model->Registrar($cliente);
         
-        header('Location: anotherDirectory / view/cliente/bienvenido.php');
+        header('Location: index.php');
     }
 
     
