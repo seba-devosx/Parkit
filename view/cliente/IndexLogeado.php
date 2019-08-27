@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Parkit</title>
+  <title>Pa</title>
   <!--aqui comienza el codigo para el icono de la app en los dispositivos moviles y que para que la barra cambie de color-->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">

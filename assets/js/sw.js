@@ -1,12 +1,12 @@
 
 //asignar un nombre y versión al cache
-const CACHE_NAME = 'v1_cache_it_Parking',
+const CACHE_NAME = 'v1_cache_Parkit',
   urlsToCache = [
     './',
     'https://fonts.googleapis.com/css?family=Source+Sans+Pro',
     '../css/Miestilo-portada.css',
     '../js/script.js',
-    '../img/logo1.png',
+    '../img/logo.png',
     '../img/favicon.png'
   ]
 
