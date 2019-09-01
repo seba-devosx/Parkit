@@ -82,3 +82,6 @@
       margin-right: auto;
       display: block;
 }
+.titulo{
+  float: left;
+}
