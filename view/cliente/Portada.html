@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="../../assets/css/estilologin.css">
+  <link rel="stylesheet" href="../../css/estilologin.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   	<!--aqui comienza el codigo para el icono de la app en los dispositivos moviles y que para que la barra cambie de color-->
@@ -17,10 +17,13 @@
 	<meta name="HandheldFriendly" content="true">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="shortcut icon" type="image/png" width="16px" height="16px"href="../../assets/favicon/Logo_oficial.png">
-	<link rel="apple-touch-icon" href="../../assets/favicon/apple-icon-144x144.png">
-	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
-  <link rel="manifest" href="../../assets/js/manifest.json">
+	<link rel="shortcut icon" type="image/png" href="assets/img/favicon-3.png">
+	<link rel="apple-touch-icon" href="assets/img/favicon-3.png">
+	<link rel="apple-touch-startup-image" href="assets/img/favicon-3.png">
+  <link rel="manifest" href="assets/js/manifest.json">
+  <link rel="stylesheet" href="../../assets/js/diseñologin.js">
+
+
  <!--separar el estilo del html--->
   <style>
   body {
@@ -124,7 +127,6 @@
   }
   .navbar li a, .navbar .navbar-brand { 
     color: #d5d5d5 !important;
-    height: 80px;
   }
   .navbar-nav li a:hover {
     color: #fff !important;
@@ -164,7 +166,6 @@
   textarea {
     resize: none;
   }
-  
   </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -177,8 +178,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage"><div></div><img src="assets/img/Logo2.png" width="70" height="70"></a>
-      <h5 class="navbar-brand"navbar-brand">Parkit</h5>
+      <a class="navbar-brand" href="#myPage"><div></div><img src="../../assets/img/logo2.png" width="30" height="30"></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -246,69 +246,50 @@
   <div class="row">
     <div class="col-lg-12">
         <div class="login-wrap">
-            <div class="login-html">
-                <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Ingreso</label>
-                <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Registro</label>
-                <div class="login-form">
-              <form action="../php/Login.php" method="post">
-                    <div class="sign-in-htm">
-                        <div class="group">
-                            <label for="user" class="label ">Email</label>
-                            <input id="user" type="text" class="input" name="txtemail">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label ">Contraseña</label>
-                            <input id="pass" type="password" class="input" data-type="password" name="txtpass">
-                        </div>
-                        <div class="group">
-                            <input id="check" type="checkbox" class="check" checked>
-                            <label for="check"><span class="icon"></span> Recuerdame</label>
-                        </div>
-                        <div class="group">
-                            <input type="submit" class="button" value="Ingresar">
-                        </div>
-              </form>
-                        <div class="hr"></div>
-                        <div class="foot-lnk">
-                            <a class="text-light "href="#forgot">Olvidaste la contraseña?</a>
-                        </div>
+            <div class="page">
+                <div class="container">
+                  <div class="left">
+                    <div class="login">Login</div>
+                    <div class="eula">By logging in you agree to the ridiculously long terms that you didn't bother to read</div>
+                  </div>
+                  <div class="right">
+                    <svg viewBox="0 0 320 300">
+                      <defs>
+                        <linearGradient
+                                        inkscape:collect="always"
+                                        id="linearGradient"
+                                        x1="13"
+                                        y1="193.49992"
+                                        x2="307"
+                                        y2="193.49992"
+                                        gradientUnits="userSpaceOnUse">
+                          <stop
+                                style="stop-color:#ff00ff;"
+                                offset="0"
+                                id="stop876" />
+                          <stop
+                                style="stop-color:#ff0000;"
+                                offset="1"
+                                id="stop878" />
+                        </linearGradient>
+                      </defs>
+                      <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
+                    </svg>
+                    <div class="form">
+                      <label for="email">Email</label>
+                      <input type="email" id="email">
+                      <label for="password">Password</label>
+                      <input type="password" id="password">
+                      <input type="submit" id="submit" value="Submit">
                     </div>
-              <form action="../php/Registro.php" method="post">
-                    <div class="sign-up-htm">
-                        <div class="group">
-                            <label for="user" class="label ">Rut </label>
-                            <input id="rut" type="text" required class="input"  name="txtrut">
-                        </div>
-                        <div class="group">
-                            <label for="user" class="label ">Nombre </label>
-                            <input id="nombre" type="text" required class="input"  name="txtnombre">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Apellido</label>
-                            <input id="apellido" type="text" class="input"  required placeholder="" name="txtapellido">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label ">Contraseña</label>
-                            <input id="pass" type="password" required class="input" data-type="password" name="txtpass">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label ">Email </label>
-                            <input id="email" type="text" required class="input"  name="txtemail">
-                          </div>
-                        <div class="group">
-                            <input type="submit" class="button" value="Registro">
-                        </div>
-                </form>
-                        <div class="hr"></div>
-                        <div class="foot-lnk">
-                            <label for="tab-1">Ya estas registrado?</a>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-            </div>
-        </div>
+              </div>
+              
+            
+          </div>
+       </div>
     </div>
-  </div>
 </div>
 
 <!-- Container (TOUR Section) -->
