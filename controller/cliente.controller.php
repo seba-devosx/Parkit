@@ -1,8 +1,6 @@
 <?php
 require_once 'model/cliente.php';
 
-
-
 class clienteController{
     
     private $model;
@@ -12,10 +10,7 @@ class clienteController{
     }
     
     public function Index(){
-       
-        require_once 'view/cliente/Portada.html';
-      
-        
+       require_once 'view/cliente/Portada.html';
        
     }
     
@@ -25,21 +20,21 @@ class clienteController{
         if(isset($_REQUEST['id'])){
             $cliente = $this->model->Obtener($_REQUEST['id']);
         }
-         require_once 'view/cliente/Registro.php';
         
-     
+        require_once 'view/header.php';
+        require_once 'view/cliente/cliente-editar.php';
         
     }
-    
     
     public function Guardar(){
         $cliente = new cliente();
         
-        
-        $cliente->email = $_REQUEST['email'];  
-        $cliente->nombre = $_REQUEST['nombre'];
-        $cliente->apellido = $_REQUEST['apellido'];
-        $cliente->pass = $_REQUEST['pass'];    
+        $cliente->id = $_REQUEST['id'];
+        $cliente->dni = $_REQUEST['dni'];
+        $cliente->Nombre = $_REQUEST['Nombre'];
+        $cliente->Apellido = $_REQUEST['Apellido'];
+        $cliente->Correo = $_REQUEST['Correo'];  
+        $cliente->telefono = $_REQUEST['telefono'];    
       
 
         $cliente->id > 0 
@@ -48,7 +43,6 @@ class clienteController{
         
         header('Location: index.php');
     }
-
     
     public function Eliminar(){
         $this->model->Eliminar($_REQUEST['id']);

@@ -1,7 +1,7 @@
 <?php
 //se se requiere de la base de datos para poedr generar 
 //la conexion si el arhivo no se encuentra no va adirigri el controlador hacia el inicio
-require_once 'model/database.php';
+require_once 'model/conexion.php';
 
 $controller = 'cliente';
 /*la logica de fron controlaer ess que cuand se hace llamar a un funcion por ejemplo el registro se ahce el lo
