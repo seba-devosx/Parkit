@@ -6,32 +6,32 @@
   "theme_color": "#BBB9BE",
   "orientation": "portrait",
   "display": "standalone",
-  "start_url": "../html/Portada.html?utm_source=web_app_manifest",
+  "start_url": "../../view/cliente/index.php?utm_source=web_app_manifest",
   "scope": "./",
   "lang": "es-MX",
   "icons": [
     {
-      "src": "../img/favicon-5.png",
+      "src": "../favicon/android-icon-36x36.png",
       "sizes": "1024x1024",
       "type": "image/png"
     },
     {
-      "src": "../img/favicon-4.png",
+      "src": "../favicon/android-icon-36x36.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "../img/favicon-3.png",
+      "src": "../favicon/android-icon-36x36.png",
       "sizes": "384x384",
       "type": "image/png"
     },
     {
-      "src": "../img/favicon-2.png",
+      "src": "../favicon/android-icon-36x36.png",
       "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "../img/favicon.png",
+      "src": "../favicon/android-icon-36x36.png",
       "sizes": "192x192",
       "type": "image/png"
     }

@@ -6,8 +6,8 @@ const CACHE_NAME = 'v1_cache_Parkit',
     'https://fonts.googleapis.com/css?family=Source+Sans+Pro',
     '../css/Miestilo-portada.css',
     '../js/script.js',
-    '../img/logo.png',
-    '../img/favicon.png'
+    '../img/logo2.png',
+    '..favicon/favicon-32x32.spng'
   ]
 
 //durante la fase de instalación, generalmente se almacena en caché los activos estáticos
