@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="../../css/estilologin.css">
+  <link rel="stylesheet" type="css/text" href="../../assets/css/Miestilo-portada.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   	<!--aqui comienza el codigo para el icono de la app en los dispositivos moviles y que para que la barra cambie de color-->
@@ -17,157 +17,17 @@
 	<meta name="HandheldFriendly" content="true">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="shortcut icon" type="image/png" href="assets/img/favicon-3.png">
-	<link rel="apple-touch-icon" href="assets/img/favicon-3.png">
-	<link rel="apple-touch-startup-image" href="assets/img/favicon-3.png">
-  <link rel="manifest" href="assets/js/manifest.json">
+	<link rel="shortcut icon" type="image/png" width="16px" height="16px"href="assets/favicon/Logo_oficial.png">
+	<link rel="apple-touch-icon" href="../../assets/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
+  <link rel="manifest" href="../../assets/js/manifest.json">
+</head>
   
-
-
  <!--separar el estilo del html--->
   <style>
-  body {
-    font: 400 15px/1.8 Lato, sans-serif;
-    color: #777;
-  }
-  h3, h4 {
-    margin: 10px 0 30px 0;
-    letter-spacing: 10px;      
-    font-size: 20px;
-    color: #111;
-  }
-  .container {
-    padding: 80px 120px;
-  }
-  .person {
-    border: 10px solid transparent;
-    margin-bottom: 25px;
-    width: 80%;
-    height: 80%;
-    opacity: 0.7;
-  }
-  .person:hover {
-    border-color: #f1f1f1;
-  }
-  .carousel-inner img {
-    -webkit-filter: grayscale(90%);
-    filter: grayscale(90%); /* make all photos black and white */ 
-    width: 100%; /* Set width to 100% */
-    margin: auto;
-  }
-  .carousel-caption h3 {
-    color: #fff !important;
-  }
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
-    }
-  }
-  .bg-1 {
-    background: #2d2d30;
-    color: #bdbdbd;
-  }
-  .bg-1 h3 {color: #fff;}
-  .bg-1 p {font-style: italic;}
-  .list-group-item:first-child {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-  }
-  .list-group-item:last-child {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  .thumbnail {
-    padding: 0 0 15px 0;
-    border: none;
-    border-radius: 0;
-  }
-  .thumbnail p {
-    margin-top: 15px;
-    color: #555;
-  }
-  .btn {
-    padding: 10px 20px;
-    background-color: #333;
-    color: #f1f1f1;
-    border-radius: 0;
-    transition: .2s;
-  }
-  .btn:hover, .btn:focus {
-    border: 1px solid #333;
-    background-color: #fff;
-    color: #000;
-  }
-  .modal-header, h4, .close {
-    background-color: #333;
-    color: #fff !important;
-    text-align: center;
-    font-size: 30px;
-  }
-  .modal-header, .modal-body {
-    padding: 40px 50px;
-  }
-  .nav-tabs li a {
-    color: #777;
-  }
-  #googleMap {
-    width: 100%;
-    height: 400px;
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
-  }  
-  .navbar {
-    font-family: Montserrat, sans-serif;
-    margin-bottom: 0;
-    background-color: #2d2d30;
-    border: 0;
-    font-size: 11px !important;
-    letter-spacing: 4px;
-    opacity: 0.9;
-  }
-  .navbar li a, .navbar .navbar-brand { 
-    color: #d5d5d5 !important;
-  }
-  .navbar-nav li a:hover {
-    color: #fff !important;
-  }
-  .navbar-nav li.active a {
-    color: #fff !important;
-    background-color: #29292c !important;
-  }
-  .navbar-default .navbar-toggle {
-    border-color: transparent;
-  }
-  .open .dropdown-toggle {
-    color: #fff;
-    background-color: #555 !important;
-  }
-  .dropdown-menu li a {
-    color: #000 !important;
-  }
-  .dropdown-menu li a:hover {
-    background-color: red !important;
-  }
-  footer {
-    background-color: #2d2d30;
-    color: #f5f5f5;
-    padding: 32px;
-  }
-  footer a {
-    color: #f5f5f5;
-  }
-  footer a:hover {
-    color: #777;
-    text-decoration: none;
-  }  
-  .form-control {
-    border-radius: 0;
-  }
-  textarea {
-    resize: none;
-  }
+ 
   </style>
-</head>
+<!--cierre de estiqueas style-->
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -178,7 +38,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage"><div></div><img src="" width="30" height="30"></a>
+      <a class="navbar-brand" href="#myPage"><div></div><img src="assets/img/Logo2.png" width="70" height="70"></a>
+      <h5 class="navbar-brand"navbar-brand">Parkit</h5>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -243,54 +104,16 @@
   <p><em>No Esperes Mas</em></p>
   <p></p>
   <br>
-  <div class="row">
-    <div class="col-lg-12">
-        <div class="login-wrap">
-            <div class="page">
-                <div class="container">
-                  <div class="left">
-                    <div class="login">Login</div>
-                    <div class="eula">By logging in you agree to the ridiculously long terms that you didn't bother to read</div>
-                  </div>
-                  <div class="right">
-                    <svg viewBox="0 0 320 300">
-                      <defs>
-                        <linearGradient
-                                        inkscape:collect="always"
-                                        id="linearGradient"
-                                        x1="13"
-                                        y1="193.49992"
-                                        x2="307"
-                                        y2="193.49992"
-                                        gradientUnits="userSpaceOnUse">
-                          <stop
-                                style="stop-color:#ff00ff;"
-                                offset="0"
-                                id="stop876" />
-                          <stop
-                                style="stop-color:#ff0000;"
-                                offset="1"
-                                id="stop878" />
-                        </linearGradient>
-                      </defs>
-                      <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
-                    </svg>
-                    <div class="form">
-                      <label for="email">Email</label>
-                      <input type="email" id="email">
-                      <label for="password">Password</label>
-                      <input type="password" id="password">
-                      <input type="submit" id="submit" value="Submit">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-            
+    <div class="row">
+        <div  class="col-md-12">
+             <div id="Cuadrado1">asas</div>
+             <div id="Cudrado2">ASAS</div>
+            </div>
           </div>
-       </div>
     </div>
-</div>
+  
+ 
+ </div>
 
 <!-- Container (TOUR Section) -->
 <div id="tour" class="bg-1">
