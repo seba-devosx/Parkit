@@ -8,16 +8,16 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="../css/estilologin.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   	<!--aqui comienza el codigo para el icono de la app en los dispositivos moviles y que para que la barra cambie de color-->
 	<meta name="theme-color" content="#BBB9BE">
 	<meta name="MobileOptimized" content="width">
 	<meta name="HandheldFriendly" content="true">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="shortcut icon" type="image/png" width="16px" height="16px"href="../../assets/favicon/Logo_oficial.png">
+	<link rel="shortcut icon" type="image/png" href="../../assets/favicon-16x16.png">
 	<link rel="apple-touch-icon" href="../../assets/favicon/apple-icon-144x144.png">
 	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
   <link rel="manifest" href="../../assets/js/manifest.json">
@@ -34,7 +34,7 @@
     color: #111;
   }
   .container {
-    padding: 80px 120px;
+    padding: 110px 120px;
   }
   .person {
     border: 10px solid transparent;
@@ -164,7 +164,15 @@
   textarea {
     resize: none;
   }
-  
+  #Nombre_usuario{
+    border-right: none;
+    border-left: none;
+    border-top: none;
+  }
+/*el focus sirva para quitar la sombra al seleccionar un campo*/
+  :focus {
+outline: 0;
+}
   </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -240,76 +248,48 @@
 <!-- Container (Registro Section) -->
 <div id="band" class="container text-center">
   <h3>REGISTRATE AHORA!</h3>
+  <h3>O</h3>
+  <h3>INGRESA YA CON TU CUENTA!</h3>
   <p><em>No Esperes Mas</em></p>
   <p></p>
   <br>
   <div class="row">
-    <div class="col-lg-12">
-        <div class="login-wrap">
-            <div class="login-html">
-                <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Ingreso</label>
-                <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Registro</label>
-                <div class="login-form">
-              <form action="../php/Login.php" method="post">
-                    <div class="sign-in-htm">
-                        <div class="group">
-                            <label for="user" class="label ">Email</label>
-                            <input id="user" type="text" class="input" name="txtemail">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label ">Contraseña</label>
-                            <input id="pass" type="password" class="input" data-type="password" name="txtpass">
-                        </div>
-                        <div class="group">
-                            <input id="check" type="checkbox" class="check" checked>
-                            <label for="check"><span class="icon"></span> Recuerdame</label>
-                        </div>
-                        <div class="group">
-                            <input type="submit" class="button" value="Ingresar">
-                        </div>
-              </form>
-                        <div class="hr"></div>
-                        <div class="foot-lnk">
-                            <a class="text-light "href="#forgot">Olvidaste la contraseña?</a>
-                        </div>
-                    </div>
-              <form action="../php/Registro.php" method="post">
-                    <div class="sign-up-htm">
-                        <div class="group">
-                            <label for="user" class="label ">Rut </label>
-                            <input id="rut" type="text" required class="input"  name="txtrut">
-                        </div>
-                        <div class="group">
-                            <label for="user" class="label ">Nombre </label>
-                            <input id="nombre" type="text" required class="input"  name="txtnombre">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label">Apellido</label>
-                            <input id="apellido" type="text" class="input"  required placeholder="" name="txtapellido">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label ">Contraseña</label>
-                            <input id="pass" type="password" required class="input" data-type="password" name="txtpass">
-                        </div>
-                        <div class="group">
-                            <label for="pass" class="label ">Email </label>
-                            <input id="email" type="text" required class="input"  name="txtemail">
-                          </div>
-                        <div class="group">
-                            <input type="submit" class="button" value="Registro">
-                        </div>
-                </form>
-                        <div class="hr"></div>
-                        <div class="foot-lnk">
-                            <label for="tab-1">Ya estas registrado?</a>
-                        </div>
-                    </div>
+      <div class="col-lg-6">
+          <div id="Registro" class="btn" data-toggle="collapse" data-target="#Registro-collapse">Registro</div>
+          <div class="w3-container">
+              <div id="Registro-collapse" class="collapse w3-panel w3-card">
+                <p class="text-capitalize">complete el formulario para ser parte de este gran servicio de estacionamientos</p>
+                  <form action="" method="POST">
+                    <p class="text-justify">NOMBRE:</p><div class="text-justify"><input type="text" name="Nombre" id="Nombre_usuario" size="40"placeholder="Ingrese su Nombre"></div>
+                    <p class="text-justify">APELLIDO:</p><div class="text-justify"><input type="text" name="Apellido" id="Nombre_usuario" size="40"placeholder="Ingrese su Apellido"></div>
+                    <p class="text-justify">RUT:(sin puntos solo guion)</p><div class="text-justify"><input type="text" name="Rut" id="Nombre_usuario" size="40"placeholder="Ingrese su Rut"></div>
+                    <p class="text-justify">CORREO:</p><div class="text-justify"><input type="text" name="Correo" id="Nombre_usuario" size="40"placeholder="Ingrese su Correo@.com"></div><br>
+                    <p class="text-justify">EDAD:</p><div class="text-justify"><input type="number" name="Edad" id="Nombre_usuario" (min="18" max="99") placeholder="Ingrese su edad"></div><br>
+                    <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="Pass" id="Nombre_usuario" size="40" placeholder="Ingrese su contraseña"></div><br>
+                    <p class="text-justify"></p><div class="text-justify text-capitalize" ><input type="checkbox" name="Termino" id="Termino_usuario">Usted acepta los terminos y condicion de este servicio</div>
+                    
+                    <button class="btn btn-block" type="submit">Registar</button>
+                  </form>
                 </div>
             </div>
-        </div>
+          </div>
+      <div class="col-lg-6">
+          <div class="btn btn-dark" data-toggle="collapse" data-target="#Login-collapse">Login</div>
+          <div class="w3-container">
+              <div  id="Login-collapse" class="collapse w3-panel w3-card" >
+                  <p class="text-capitalize">Ingresa Un estacionamieto te estara esperando!!</p>
+                  <form action="" method="POST">
+                    <p class="text-justify">RUT:</p><div class="text-justify"><input type="text" name="Rut" id="Nombre_usuario" size="40"placeholder="Ingrese su Rut"></div>
+                    <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="Pass" id="Nombre_usuario" size="40" placeholder="Ingrese su contraseña"></div><br>
+                    
+                    <button class="btn btn-block" type="submit">Ingresar</button>
+                  </form>
+                </div>
+            </div>
+          </div>
     </div>
-  </div>
 </div>
+  
 
 <!-- Container (TOUR Section) -->
 <div id="tour" class="bg-1">
