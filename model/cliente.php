@@ -3,10 +3,12 @@ class cliente
 {
 	private $pdo;
     
+    public $id;
+    public $dni;
     public $Nombre;
     public $Apellido;  
-	public $Correo;
-	public $pass;
+    public $Correo;
+    public $Telefono;
 
 	public function __CONSTRUCT()
 	{
@@ -83,12 +85,12 @@ class cliente
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
-
-						$data->Correo,
+				    	$data->dni, 
                         $data->Nombre,                        
                         $data->Apellido,
-                        $data->pass, 
-                     
+                         $data->Correo,
+                        $data->telefono, 
+                        $data->id
 					)
 				);
 		} catch (Exception $e) 
@@ -101,17 +103,17 @@ class cliente
 	{
 		try 
 		{
-		$sql = "INSERT INTO usuarios (`email`, `nombre`, `apellido`, `pass`,`idtipo`) 
-		        VALUES (?, ?, ?, ?, '2')";
+		$sql = "INSERT INTO cliente (dni,Nombre,Apellido,Correo,telefono) 
+		        VALUES (?, ?, ?, ?, ?)";
 
 		$this->pdo->prepare($sql)
 		     ->execute(
 				array(
-					
-					$data->email,
-                    $data->nombre,
-                    $data->apellido, 
-                    $data->pass,
+					 $data->dni, 
+                    $data->Nombre,
+                    $data->Apellido, 
+                    $data->Correo, 
+                     $data->telefono 
                    
                 )
 			);
