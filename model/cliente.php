@@ -3,12 +3,13 @@ class cliente
 {
 	private $pdo;
     
-    public $id;
-    public $dni;
     public $Nombre;
-    public $Apellido;  
+	public $Apellido;  
+	public $Rut;
     public $Correo;
-    public $Telefono;
+	public $Pass;
+
+	
 
 	public function __CONSTRUCT()
 	{
@@ -16,110 +17,45 @@ class cliente
 		{
 			$this->pdo = Database::StartUp();     
 		}
-		catch(Exception $e)
+		catch(Exception $error)
 		{
-			die($e->getMessage());
+			die($error->getMessage());
 		}
 	}
 
-	public function Listar()
-	{
-		try
-		{
-			$result = array();
 
-			$stm = $this->pdo->prepare("SELECT * FROM cliente");
-			$stm->execute();
-
-			return $stm->fetchAll(PDO::FETCH_OBJ);
-		}
-		catch(Exception $e)
-		{
-			die($e->getMessage());
-		}
-	}
-
-	public function Obtener($id)
-	{
-		try 
-		{
-			$stm = $this->pdo
-			          ->prepare("SELECT * FROM cliente WHERE id = ?");
-			          
-
-			$stm->execute(array($id));
-			return $stm->fetch(PDO::FETCH_OBJ);
-		} catch (Exception $e) 
-		{
-			die($e->getMessage());
-		}
-	}
-
-	public function Eliminar($id)
-	{
-		try 
-		{
-			$stm = $this->pdo
-			            ->prepare("DELETE FROM cliente WHERE id = ?");			          
-
-			$stm->execute(array($id));
-		} catch (Exception $e) 
-		{
-			die($e->getMessage());
-		}
-	}
-
-	public function Actualizar($data)
-	{
-		try 
-		{
-			$sql = "UPDATE cliente SET 
-						dni      		= ?,
-						Nombre          = ?, 
-						Apellido        = ?,
-                        Correo        = ?,
-                        Telefono        = ?
-						
-				    WHERE id = ?";
-
-			$this->pdo->prepare($sql)
-			     ->execute(
-				    array(
-				    	$data->dni, 
-                        $data->Nombre,                        
-                        $data->Apellido,
-                         $data->Correo,
-                        $data->telefono, 
-                        $data->id
-					)
-				);
-		} catch (Exception $e) 
-		{
-			die($e->getMessage());
-		}
-	}
 
 	public function Registrar(cliente $data)
 	{
-		try 
-		{
-		$sql = "INSERT INTO cliente (dni,Nombre,Apellido,Correo,telefono) 
-		        VALUES (?, ?, ?, ?, ?)";
+		try {
+		//$sql = "INSERT INTO cliente (dni,Nombre,Apellido,Correo,telefono) 
+				//VALUES (?, ?, ?, ?, ?)";
+		$sql="INSERT INTO `Cliente`(Nombre,Apellido,Rut,Correo,Pass) 
+		VALUES (?,?,?,?,?)";
 
 		$this->pdo->prepare($sql)
 		     ->execute(
 				array(
-					 $data->dni, 
-                    $data->Nombre,
-                    $data->Apellido, 
+					$data->Nombre,	
+					$data->Apellido,
+					$data->Rut,
                     $data->Correo, 
-                     $data->telefono 
+                    $data->Pass,
                    
                 )
 			);
-		} catch (Exception $e) 
-		{
-			die($e->getMessage());
+		} catch (Exception $error) {
+			require_once 'view/cliente/yaregistrado.html';
+			die($error->getMessage());
+		}
+	}
+
+	public function Login (cliente $data){
+		try{
+
+		}
+		catch(){
+
 		}
 	}
 }

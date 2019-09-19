@@ -16,11 +16,11 @@
 	<meta name="MobileOptimized" content="width">
 	<meta name="HandheldFriendly" content="true">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="shortcut icon" type="image/png" href="../../assets/favicon-16x16.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon" />
 	<link rel="apple-touch-icon" href="../../assets/favicon/apple-icon-144x144.png">
 	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
-  <link rel="manifest" href="../../assets/js/manifest.json">
+  <link rel="manifest" href="../cliente/manifest.json">
  <!--separar el estilo del html--->
   <style>
   body {
@@ -169,6 +169,32 @@
     border-left: none;
     border-top: none;
   }
+#Apellido_usuario{
+  border-right: none;
+    border-left: none;
+    border-top: none;
+}
+#Rut_usuario{
+border-right: none;
+    border-left: none;
+    border-top: none;
+}
+#Correo_usuario{
+border-right: none;
+    border-left: none;
+    border-top: none;
+}
+#Edad_usuario{
+border-right: none;
+    border-left: none;
+    border-top: none;
+} 
+#Pass_usuario{
+border-right: none;
+    border-left: none;
+    border-top: none;
+} 
+
 /*el focus sirva para quitar la sombra al seleccionar un campo*/
   :focus {
 outline: 0;
@@ -199,7 +225,7 @@ outline: 0;
   </div>
 </nav>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide"data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -254,33 +280,34 @@ outline: 0;
   <p></p>
   <br>
   <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-6 ">
           <div id="Registro" class="btn" data-toggle="collapse" data-target="#Registro-collapse">Registro</div>
           <div class="w3-container">
               <div id="Registro-collapse" class="collapse w3-panel w3-card">
                 <p class="text-capitalize">complete el formulario para ser parte de este gran servicio de estacionamientos</p>
-                  <form action="" method="POST">
-                    <p class="text-justify">NOMBRE:</p><div class="text-justify"><input type="text" name="Nombre" id="Nombre_usuario" size="40"placeholder="Ingrese su Nombre"></div>
-                    <p class="text-justify">APELLIDO:</p><div class="text-justify"><input type="text" name="Apellido" id="Nombre_usuario" size="40"placeholder="Ingrese su Apellido"></div>
-                    <p class="text-justify">RUT:(sin puntos solo guion)</p><div class="text-justify"><input type="text" name="Rut" id="Nombre_usuario" size="40"placeholder="Ingrese su Rut"></div>
-                    <p class="text-justify">CORREO:</p><div class="text-justify"><input type="text" name="Correo" id="Nombre_usuario" size="40"placeholder="Ingrese su Correo@.com"></div><br>
-                    <p class="text-justify">EDAD:</p><div class="text-justify"><input type="number" name="Edad" id="Nombre_usuario" (min="18" max="99") placeholder="Ingrese su edad"></div><br>
-                    <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="Pass" id="Nombre_usuario" size="40" placeholder="Ingrese su contraseña"></div><br>
-                    <p class="text-justify"></p><div class="text-justify text-capitalize" ><input type="checkbox" name="Termino" id="Termino_usuario">Usted acepta los terminos y condicion de este servicio</div>
+                  <form action="?c=cliente&a=Guardar" method="post">
+                    <p class="text-justify">NOMBRE:</p><div class="text-justify"><input type="text" name="Nombre" id="Nombre_usuario" placeholder="Ingrese su Nombre" required></div>
+                    <p class="text-justify">APELLIDO:</p><div class="text-justify"><input type="text" name="Apellido" id="Apellido_usuario" placeholder="Ingrese su Apellido"required></div>
+                    <p class="text-justify">RUT:(sin puntos solo guion)</p><div class="text-justify"><input type="text" name="Rut" id="Rut_usuario" placeholder="Ingrese su Rut"required></div>
+                    <p class="text-justify">CORREO:</p><div class="text-justify"><input type="text" name="Correo" id="Correo_usuario" size="30"placeholder="Ingrese su Correo@.com"required></div><br>
+                    <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="Pass" id="Pass_usuario" placeholder="Ingrese su contraseña"required></div><br>
+                    <p class="text-justify"></p><div class="text-justify text-capitalize" ><input type="checkbox" name="Termino" id="Termino_usuario"required>Usted acepta los terminos y condicion de este servicio</div>
                     
                     <button class="btn btn-block" type="submit">Registar</button>
                   </form>
                 </div>
             </div>
           </div>
-      <div class="col-lg-6">
+          
+        
+      <div class="col-lg-6 ">
           <div class="btn btn-dark" data-toggle="collapse" data-target="#Login-collapse">Login</div>
           <div class="w3-container">
               <div  id="Login-collapse" class="collapse w3-panel w3-card" >
                   <p class="text-capitalize">Ingresa Un estacionamieto te estara esperando!!</p>
                   <form action="" method="POST">
-                    <p class="text-justify">RUT:</p><div class="text-justify"><input type="text" name="Rut" id="Nombre_usuario" size="40"placeholder="Ingrese su Rut"></div>
-                    <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="Pass" id="Nombre_usuario" size="40" placeholder="Ingrese su contraseña"></div><br>
+                    <p class="text-justify">RUT:</p><div class="text-justify"><input type="text" name="Rut" id="Nombre_usuario" size="20"placeholder="Ingrese su Rut"></div>
+                    <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="Pass" id="Nombre_usuario" size="20" placeholder="Ingrese su contraseña"></div><br>
                     
                     <button class="btn btn-block" type="submit">Ingresar</button>
                   </form>
