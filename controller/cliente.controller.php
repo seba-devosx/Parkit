@@ -13,6 +13,11 @@ class clienteController{
        require_once 'view/cliente/Portada.html';
        
     }
+    public function Index_exito_error(){
+        require_once 'view/cliente/Portada.html';
+        
+     }
+     
     
     
     public function Guardar(){
@@ -25,7 +30,7 @@ class clienteController{
         $cliente->Pass = $_REQUEST['Pass'];
 
        $this->model->Registrar($cliente);
-       require_once 'view/cliente/Registrado.html';
+       require_once 'view/cliente/Exito.html';
 
       
     }

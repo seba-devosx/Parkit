@@ -45,7 +45,7 @@ class cliente
                 )
 			);
 		} catch (Exception $error) {
-			require_once 'view/cliente/yaregistrado.html';
+			require_once 'view/cliente/Error.html';
 			die($error->getMessage());
 		}
 	}
