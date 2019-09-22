@@ -50,12 +50,4 @@ class cliente
 		}
 	}
 
-	public function Login (cliente $data){
-		try{
-
-		}
-		catch(){
-
-		}
-	}
 }
