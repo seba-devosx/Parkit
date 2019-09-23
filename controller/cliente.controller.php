@@ -39,4 +39,13 @@ class clienteController{
         $this->model->Eliminar($_REQUEST['id']);
         header('Location: index.php');
     }
+    public function Validar(){
+        if(isset ($_POST['Rut'],$_POST['Pass'])){
+            
+
+        }
+        
+
+
+    }
 }

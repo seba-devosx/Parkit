@@ -6,7 +6,7 @@
   "theme_color": "#BBB9BE",
   "orientation": "portrait",
   "display": "standalone",
-  "start_url": "../html/Portada.html?utm_source=web_app_manifest",
+  "start_url": "../index.phpl?utm_source=web_app_manifest",
   "scope": "./",
   "lang": "es-MX",
   "icons": [
