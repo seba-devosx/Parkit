@@ -49,5 +49,35 @@ class cliente
 			die($error->getMessage());
 		}
 	}
+	public function Login (cliente $data, $Rut,$Pass){
+		try{
+		$sql="SELECT * FROM `Cliente` WHERE Rut =? AND Pass =?";
+		$this->pdo->prepare($sql)
+		->execute(array( 
+			$data->$Rut,
+		    $data->$Pass
+		)
+		
+	);
+		$clienteRow=$sql->fetch(PDO::FETCH_ASSOC);
+		if ($sql->rowCount() >0) {
+			if(password_verify($Pass, $clienteRow['Pass']))
+			{
+			   $_SESSION['user_session'] = $userRow['Rut'];
+			   return true;
+			}
+			
+		}
+		else{
+			return false;
+
+		}
+		}catch(Exception $error){
+			require_once 'view/cliente/yaregistrado.html';
+			die($error->getMessage()); 
+
+		}
+	}
+
 
 }
