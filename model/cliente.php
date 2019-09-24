@@ -45,7 +45,7 @@ class cliente
                 )
 			);
 		} catch (Exception $error) {
-			require_once 'view/cliente/yaregistrado.html';
+			require_once 'view/cliente/Error.html';
 			die($error->getMessage());
 		}
 	}
@@ -79,5 +79,16 @@ class cliente
 		}
 	}
 
+
+	public function Login(cliente $data){
+		try{
+			$sql="SELECT * FROM `Cliente` WHERE `Rut` ='?' AND `Pass`='?'";
+			
+
+		}catch(Exceptio $error){
+			die($error->getMessage());
+
+		}
+	}
 
 }
