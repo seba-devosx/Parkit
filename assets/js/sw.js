@@ -1,13 +1,12 @@
 
 //asignar un nombre y versión al cache
-const CACHE_NAME = 'v1_cache_it_Parking',
+const CACHE_NAME = 'v1_cache_parkit',
   urlsToCache = [
     './',
     'https://fonts.googleapis.com/css?family=Source+Sans+Pro',
-    '../css/Miestilo-portada.css',
-    '../js/script.js',
-    '../img/logo1.png',
-    '../img/favicon.png'
+    '/assets/js/script.js',
+    '/assets/img/logo2.png',
+    '../../../favicon.ico'
   ]
 
 //durante la fase de instalación, generalmente se almacena en caché los activos estáticos

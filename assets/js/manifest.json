@@ -1,12 +1,12 @@
 {
-  "name": "IT-Parking",
-  "short_name": "IT-Parking",
+"name": "parkit",
+"short_name": "parkit",
   "description": "Bienvenido al nuevo sistema de estacionamientos que revolucionara el mercado chileno",
   "background_color": "#BBB9BE",
   "theme_color": "#BBB9BE",
   "orientation": "portrait",
   "display": "standalone",
-  "start_url": "../html/Portada.html?utm_source=web_app_manifest",
+  "start_url": "../index.phpl?utm_source=web_app_manifest",
   "scope": "./",
   "lang": "es-MX",
   "icons": [
