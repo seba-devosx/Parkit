@@ -22,6 +22,7 @@
 	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
   <link rel="manifest" href="../cliente/manifest.json">
  <!--separar el estilo del html--->
+
   <style>
   body {
     font: 400 15px/1.8 Lato, sans-serif;
@@ -306,9 +307,9 @@ outline: 0;
           <div class="w3-container">
               <div  id="Login-collapse" class="collapse w3-panel w3-card" >
                   <p class="text-capitalize">Ingresa Un estacionamieto te estara esperando!!</p>
-                  <form action="?c=cliente&a=Validar" method="POST">
-                    <p class="text-justify">RUT:</p><div class="text-justify"><input type="text" name="Rut" id="Nombre_usuario" size="20"placeholder="Ingrese su Rut"></div>
-                    <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="Pass" id="Nombre_usuario" size="20" placeholder="Ingrese su contraseña"></div><br>
+                  <form action="./validations/Validacion_code.php" method="POST">
+                    <p class="text-justify">Username:</p><div class="text-justify"><input type="text" name="txtUsuario" id="Nombre_usuario" size="20"placeholder="Ingrese su Username"  required autofocus></div>
+                    <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="txtPass" id="Nombre_usuario" size="20" placeholder="Ingrese su Contraseña"  required autofocus></div><br>
                     
                     <button class="btn btn-block" type="submit">Ingresar</button>
                   </form>
