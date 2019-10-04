@@ -1,27 +1,44 @@
 
 <!DOCTYPE html>
 <html lang="en">
+  <?php
+  session_start();
+  if (isset($_SESSION["usuario"])) {
+    if ($_SESSION["usuario"]["privilegio"] == 1) {
+      header("location:Administrador.php");
+    }
+  }
+  else{
+    header("location:Portada.php");
+  }
+  
+  ?>
 <head>
-  <title>Pa</title>
-  <!--aqui comienza el codigo para el icono de la app en los dispositivos moviles y que para que la barra cambie de color-->
+<title>Parkit</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#BBB9BE">
-	<meta name="MobileOptimized" content="width">
-	<meta name="HandheldFriendly" content="true">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="shortcut icon" type="image/png" href="assets/img/favicon-3.png">
-	<link rel="apple-touch-icon" href="assets/img/favicon-3.png">
-	<link rel="apple-touch-startup-image" href="assets/img/favicon-3.png">
-	<link rel="manifest" href="assets/js/manifest.json">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="assets/css/estilologin.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  	
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  	<!--aqui comienza el codigo para el icono de la app en los dispositivos moviles y que para que la barra cambie de color-->
+	<meta name="theme-color" content="#BBB9BE">
+	<meta name="MobileOptimized" content="width">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="../../assets/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
+  <link rel="manifest" href="../cliente/manifest.json">
+<!--efacto de notificaciones-->
+  <script src="./assets/js/Alertas-login.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assets/css/overhang.min.css" />
+<script type="text/javascript" src="./assets/js/overhang.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
   <style>
   body {
     font: 400 15px/1.8 Lato, sans-serif;
@@ -33,9 +50,9 @@
     font-size: 20px;
     color: #111;
   }
-  .container {
-    padding: 80px 120px;
-  }
+  /*.container {
+    padding: 110px 120px;
+  }*/
   .person {
     border: 10px solid transparent;
     margin-bottom: 25px;
@@ -124,6 +141,7 @@
   }
   .navbar li a, .navbar .navbar-brand { 
     color: #d5d5d5 !important;
+    height: 80px;
   }
   .navbar-nav li a:hover {
     color: #fff !important;
@@ -163,12 +181,17 @@
   textarea {
     resize: none;
   }
+#user{
+  margin-top:10px;
+}
+
+  
   </style>
 
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-expand-md "><!--navbar-fixed-top-->
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -176,77 +199,54 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage"><div></div><img src="assets/img/favicon-3.png" width="30" height="30"></a>
+      <a class="navbar-brand" href="#myPage"><div></div><img src="../../assets/img/Logo.png" width="70" height="70"></a>
+      <h5 class="navbar-brand"navbar-brand">Parkit</h5>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#myPage">INICIO</a></li>
-        <li><a href="#tour">RESERVA</a></li>
+      
+      <li><a class="text-uppercase"><?php echo $_SESSION["usuario"]["usuario"]?></a></li>
+        <li><a href="#tour">REALIZAR RESERVA</a></li>
         <li><a href="#contact">CONTACTO</a></li>
-        <li><a href="../php/CerrarSesion.php">CERRAR SESION</a></li>
+        <li id="cerrar"><a href="../Cerrar/CerrarSession.php">CERRAR SESION</a></li>
       </ul>
+      <br>
+      
     </div>
   </div>
 </nav>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="assets/img/estacionamiento1.jpg" alt="New York" width="1200" height="700">
-        <div class="carousel-caption">
-          <h3>Bienvenido</h3>
-          <p>A Parkit reserva tu estacionamiento!</p>
-        </div>      
-      </div>
-
-      <div class="item">
-        <img src="assets/img/estacinamiento2.jpg" alt="Chicago" width="1200" height="700">
-        <div class="carousel-caption">
-          <h3>Plazas Automatizadas</h3>
-          <p>A lo largo de todo Chile</p>
-        </div>      
-      </div>
-    
-      <div class="item">
-        <img src="assets/img/estacionamiento5.jpg" alt="Los Angeles" width="1200" height="700">
-        <div class="carousel-caption">
-          <h3>Usa Parkit</h3>
-          <p>Registrate Ahora!</p>
-        </div>      
-      </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-</div>
 
 <!-- Container (Usuario Section) -->
 <div id="band" class="container text-center">
-  <h3>BIENVENIDO<?php echo ":". $_SESSION["email"]?></h3>
-  <p><em>No Esperes Mas y has tu reserva!</em></p>
-  <p>Estacionamientos Reservados:</p>
+<i id="user"class='fas fa-user-circle' style='font-size:60px;color:black'></i>
+  <h3 class="text-uppercase">Bienvenido:<?php echo $_SESSION["usuario"]["nombre"]?>-<?php echo $_SESSION["usuario"]["apellido"]?>||<?php echo $_SESSION["usuario"]["privilegio"] == 1 ? 'admin' : 'cliente';?></h3>
+  <p class="text-justify text text-capitalize center-block"><h1 class="text-capitalize">nota:</h1>Antes de iniciar a interactuar con el sistema de reserva te dejamos unas intrucciones para su uso,
+     si ya conoces el funcionamiento omite este comentario y sube al siguiente nivel del desarrollo plazas 100% automatizadas del pais.</p>
+  <p><em>No Esperes Mas!!!</em></p>
+  <p></p>
   <br>
-
   <div class="row">
-    <div class="col-sm-12 ">
+      <div class="col-lg-12 text-center ">
+          <div id="Registro" class="btn" data-toggle="collapse" data-target="#Registro-collapse">Registro</div>
+          <div class="w3-container">
+              <div id="Registro-collapse" class="collapse w3-panel w3-card">
+                <p class="text-capitalize">complete el formulario para ser parte de este gran servicio de estacionamientos</p>
+                 <!--aca se inicia el slide de intrucciones para explicar el funcionamiento del sistem de reserva-->
+                 <p class="text-uppercase">instrucciones de uso:</p>
+                  
+                </div>
+            </div>
+          </div>
+          <br>
+          
+   
     </div>
-  </div>
+    <br>
+    <br>
 </div>
+  
 
 <!-- Container (TOUR Section) -->
 <div id="tour" class="bg-1">
@@ -258,21 +258,21 @@
  <div class="row text-center">
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="assets/img/ubi.png" alt="Paris" width="400" height="300">
+          <img src="../../assets/img/ubi.png" alt="Paris" width="400" height="300">
           <p><strong>Estacionamiento 1</strong></p>
           <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="assets/img/ubi.png" alt="New York" width="400" height="300">
+          <img src="../../assets/img/ubi.png" alt="New York" width="400" height="300">
           <p><strong>Estacionamiento 2</strong></p>
           <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="assets/img/ubi.png" alt="San Francisco" width="400" height="300">
+          <img src="../../assets/img/ubi.png" alt="San Francisco" width="400" height="300">
           <p><strong>Estacionamiento 3</strong></p>
           <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
         </div>

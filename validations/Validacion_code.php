@@ -1,22 +1,42 @@
-<!--a ca se de colocar el codigo que debe ser pporbado para el registor y el login el kl del video lo utiliza -->
+
 <?php
-
 include '../controller/UsuarioControlador.php';
+include '../helps/helps.php';
+header('Content-Type: application/json');
+session_start();
+$resultado = array();
 
-if(isset($_POST["txtUsuario"]) && isset($_POST["txtPass"])){
-    $txtUsuario = $_POST["txtUsuario"];
-    $txtPass =$_POST["txtPass"];
+if ($_SERVER["REQUEST_METHOD"]== "POST") {
+    if(isset($_POST["txtUsuario"]) && isset($_POST["txtPass"])){
+        $txtUsuario =validar_campo( $_POST["txtUsuario"]);
+        $txtPass = validar_campo($_POST["txtPass"]);
+    
+        $resultado = array("estado"=>"true");
 
-    if(UsuarioControlador::login($txtUsuario,$txtPass)){
-        echo "listoco" ;
-        include '../view/cliente/bienvenido.php';
+        if(UsuarioControlador::login($txtUsuario,$txtPass)){
+            
+            $usuario =UsuarioControlador::getUsuario($txtUsuario,$txtPass);
+            $_SESSION["usuario"]= array(
+              "nombre"      => $usuario->getNombre(),
+              "apellido"    => $usuario->getApellido(),
+              "usuario"     => $usuario->getUsuario(),
+              "correo"      => $usuario->getCorreo(),
+              "rut"      =>    $usuario->getRut(),
+              "privilegio" =>  $usuario->getPrivilegio(),
+             
+            );
+            return print(json_encode($resultado));
+        
+           
+        }
     }
-    else{
-        include '../view/cliente/Error.html';
-    echo"wena kl no funciona esta wea jaja XD";
-    }
-   
 }
+
+$resultado = array("estado"=>"false");
+return print(json_encode($resultado));
+
+
+
 
 
 

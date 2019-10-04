@@ -36,7 +36,7 @@ class UsuarioDao extends conexion{
     }
     /*esta funcion esppara el registo de usuario y debe ser llaamada en el usuario controlador  */
     public static function registro($usuario){
-        $query="INSERT INTO `Usuario`(`nombre`, `apellido`, `rut`, `correo`, `pass`, `usuario`) VALUES (:nombre,:apellido,rut,:correo,:pass,:usuario)";
+        $query="INSERT INTO `Usuario`(`nombre`, `apellido`, `rut`, `correo`, `pass`, `usuario`,`privilegio`) VALUES (:nombre,:apellido,:rut,:correo,:pass,:usuario,'2')";
         
         self::getConexion();
         $resultado = self::$cnx->prepare($query);
@@ -52,6 +52,32 @@ class UsuarioDao extends conexion{
 
         }
         return false;
+
+    }
+     /*este este metodo es para poder obtener usuario y este sea visualizado en el indexlogin.php*/
+    public static function getUsuario($usuario){
+        $query="SELECT `nombre`, `apellido`, `rut`, `correo`, `usuario`, `privilegio`  FROM `Usuario` WHERE `usuario`=:usuario AND `pass`=:pass";
+       
+        self::getConexion();
+        $resultado = self::$cnx->prepare($query);
+
+        $resultado->bindValue(":usuario",$usuario->getUsuario());
+        $resultado->bindValue(":pass",$usuario->getPass());
+
+        $resultado->execute();
+
+       $filas=$resultado->fetch();/*lo que hace la varible fecth es rellenar la variable resultado y los maneja como un array */
+        
+       $usuario = new $usuario();
+       $usuario->setNombre($filas["nombre"]);
+       $usuario->setApellido($filas["apellido"]);
+       $usuario->setUsuario($filas["usuario"]);
+       $usuario->setCorreo($filas["correo"]);
+       $usuario->setRut($filas["rut"]);
+       $usuario->setPrivilegio($filas["privilegio"]);
+     
+
+       return $usuario;
 
     }
 
