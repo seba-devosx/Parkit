@@ -6,6 +6,7 @@ class Usuario{
 	private $correo;
 	private $pass;
 	private $usuario;
+	private $privilegio;
 
 	public function getNombre(){
 		return $this->nombre;
@@ -53,6 +54,13 @@ class Usuario{
 
 	public function setUsuario($usuario){
 		$this->usuario = $usuario;
+	}
+	public function getPrivilegio(){
+		return $this->Privilegio;
+	}
+
+	public function setPrivilegio($privilegio){
+		$this->Privilegio = $privilegio;
 	}
 
 

@@ -15,7 +15,7 @@ class UsuarioControlador{
 
     public static function registro($nombre,$apellido,$rut,$correo,$pass,$usuario){
         $obj_usuario = new Usuario();
-        $obj_usuario->setNombre($usuario);
+        $obj_usuario->setNombre($nombre);
         $obj_usuario->setApellido($apellido);
         $obj_usuario->setRut($rut);
         $obj_usuario->setCorreo($correo);
@@ -24,6 +24,15 @@ class UsuarioControlador{
 
         return UsuarioDao::registro($obj_usuario);
     }
+
+    public function getUsuario($usuario,$pass){
+        $obj_usuario = new Usuario();
+        $obj_usuario->setUsuario($usuario);
+        $obj_usuario->setPass($pass);
+
+        return UsuarioDao::getUsuario($obj_usuario);
+    }
+
 }
 
 
