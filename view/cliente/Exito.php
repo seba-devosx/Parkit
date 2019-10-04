@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+  session_start();
+  ?>
 <head>
   
   <title>Parkit</title>
@@ -200,6 +203,7 @@ border-right: none;
 outline: 0;
 }
   </style>
+ 
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
@@ -211,7 +215,7 @@ outline: 0;
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage"><div></div><img src="assets/img/Logo2.png" width="70" height="70"></a>
+      <a class="navbar-brand" href="#myPage"><div></div><img src="../../assets/img/Logo.png" width="70" height="70"></a>
       <h5 class="navbar-brand"navbar-brand">Parkit</h5>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -225,14 +229,19 @@ outline: 0;
 
 <!-- Container (Registro Section) -->
 <div id="band" class="container text-center">
- 
+ <h1>Bienvenido:<?php echo $_SESSION["usuario"]["nombre"]?></h1>
+ <h1>Bienvenido:<?php echo $_SESSION["usuario"]["apellido"]?></h1>
+ <h1>Bienvenido:<?php echo $_SESSION["usuario"]["correo"]?></h1>
+ <h1>Bienvenido:<?php echo $_SESSION["usuario"]["rut"]?></h1>
+ <h1>Bienvenido:<?php echo $_SESSION["usuario"]["privilegio"] == 1 ? 'admin' : 'cliente';?></h1>
+
   <br>
   <div class="row">
       <div class="col-lg-12 ">
           <div class="w3-container">
               <div id="Registro-collapse" class="w3-panel w3-card">
                <h1 class="text-capitalize text-justify">!!genial tus datos han sido procesados correctamente, porfavor vuelve al inicio y logeate con tus datos</h1>
-                 
+                 <div><img src="../../assets/img/Logo.png" alt="Imagen" width="70" height="70"></div>
                 </div>
             </div>
           </div>
