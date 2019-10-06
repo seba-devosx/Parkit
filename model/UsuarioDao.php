@@ -36,16 +36,18 @@ class UsuarioDao extends conexion{
     }
     /*esta funcion esppara el registo de usuario y debe ser llaamada en el usuario controlador  */
     public static function registro($usuario){
-        $query="INSERT INTO `Usuario`(`nombre`, `apellido`, `rut`, `correo`, `pass`, `usuario`,`privilegio`) VALUES (:nombre,:apellido,:rut,:correo,:pass,:usuario,'2')";
+        $query="INSERT INTO `Usuario`(`nombre`, `apellido`, `rut`, `correo`, `pass`, `usuario`,`privilegio`) VALUES (:nombre,:apellido,:rut,:correo,:pass,:usuario,:privilegio)";
         
         self::getConexion();
         $resultado = self::$cnx->prepare($query);
+
         $resultado->bindValue(":nombre",$usuario->getNombre());
         $resultado->bindValue(":apellido",$usuario->getApellido());
         $resultado->bindValue(":rut",$usuario->getRut());
         $resultado->bindValue(":correo",$usuario->getCorreo());
         $resultado->bindValue(":pass",$usuario->getPass());
         $resultado->bindValue(":usuario",$usuario->getUsuario());
+        $resultado ->bindValue(":privilegio",$usuario->getPrivilegio());
 
         if($resultado->execute()){
             return true;

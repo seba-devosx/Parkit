@@ -208,7 +208,7 @@
       <li><a class="text-uppercase"><?php echo $_SESSION["usuario"]["usuario"]?></a></li>
         <li><a href="#tour">REALIZAR RESERVA</a></li>
         <li><a href="#contact">CONTACTO</a></li>
-        <li id="cerrar"><a href="../Cerrar/CerrarSession.php">CERRAR SESION</a></li>
+        <li id="cerrar"><a href="CerrarSession.php">CERRAR SESION</a></li>
       </ul>
       <br>
       

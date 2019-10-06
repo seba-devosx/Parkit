@@ -208,7 +208,7 @@
       <li><a class="text-uppercase"><?php echo $_SESSION["usuario"]["usuario"]?></a></li>
         <li><a href="#tour">REALIZAR RESERVA</a></li>
         <li><a href="#contact">CONTACTO</a></li>
-        <li><a href="../Cerrar/CerrarSession.php">CERRAR SESION</a></li>
+        <li><a href="CerrarSession.php">CERRAR SESION</a></li>
       </ul>
       <br>
       
@@ -248,10 +248,41 @@
 </div>
   
 
-<!-- Container (TOUR Section) -->
+<!-- Container (TOUR Section)  aqui se deven visualizr los estacionamientos que han sido reservados -->
 <div id="tour" class="bg-1">
   <div class="container">
-    <h3 class="text-center">ESTACIONAMIENTOS</h3>
+    <h3 class="text-center text-uppercase">estacionamientos reservados</h3>
+    <p class="text-center">El Mejor Servicio De Automatizacion De Estacionamiento
+        <br>Selecciona cualquier estacionamiento</p>
+
+ <div class="row text-center">
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../../assets/img/ubi.png" alt="Paris" width="400" height="300">
+          <p><strong>Estacionamiento 1</strong></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../../assets/img/ubi.png" alt="New York" width="400" height="300">
+          <p><strong>Estacionamiento 2</strong></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="../../assets/img/ubi.png" alt="San Francisco" width="400" height="300">
+          <p><strong>Estacionamiento 3</strong></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- aqui se deben visualizar las reservas realizadas por los clientes y ver el tiempo-->
+  <div id="tour" class="bg-1">
+  <div class="container">
+    <h3 class="text-center text-uppercase">estacionamientos reservados</h3>
     <p class="text-center">El Mejor Servicio De Automatizacion De Estacionamiento
         <br>Selecciona cualquier estacionamiento</p>
 

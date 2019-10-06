@@ -1,4 +1,5 @@
 $ (document).ready(function(){
+    
     $("#Registro-form").bind("submit",function(){
         $.ajax({
             type: $(this).attr("method"),
@@ -14,18 +15,30 @@ $ (document).ready(function(){
                 if(response.estado == "true"){
                     $("body").overhang({
                         type: "success",
-                        message: "Usuario encontrado te estamos redirigiendo ...",
+                        message: "Te Estamos Registrando En Nuestro Sietema",
+                         
                         callback:function(){
-                            window.location.href ="./view/cliente/Portada.html";
+                            window.location.href ="Location:http://localhost/parkit/";
+                            $("body").overhang({
+                                type: "success",
+                                message: "!!Listo Ahora Puedes Ingresar",
+                                
+                                //./view/cliente/Exito.php
+                                
+                            });
                         }
                         //./view/cliente/Exito.php
+                        
                     });
+                    
 
                 }
                 else{
                     $("body").overhang({
+                        
                         type: "error",
-                        message: "Usuario incorrecto"
+                        message: "Este usuario ya esta registrado, si olvido sus datos pongase en contacto con los administradores"
+                        // 3000ms = 3s
                     });
                     $("·Login-form buttom[type=submit]").html("enviando...");
                     $("·Login-form buttom[type=submit]").removeAttr("disabled","disabled");

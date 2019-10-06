@@ -2,5 +2,5 @@
 session_start();
 session_destroy();
 session_unset();
-header('Location:/../../cliente/Portada.html');
+header('Location:http://localhost/parkit/');
 ?>
