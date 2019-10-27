@@ -1,6 +1,5 @@
 <?php
 include '../model/UsuarioDao.php';
-
 class UsuarioControlador{
     public static function login($usuario,$pass){
         $obj_usuario = new Usuario();
@@ -32,6 +31,11 @@ class UsuarioControlador{
         $obj_usuario->setPass($pass);
 
         return UsuarioDao::getUsuario($obj_usuario);
+    }
+    public function getUsuarios(){
+      
+
+        return UsuarioDao::getUsuarios();
     }
 
 }

@@ -19,7 +19,9 @@ class UsuarioDao extends conexion{
         self::getConexion();
         $resultado = self::$cnx->prepare($query);
 
-        $resultado->bindValue(":usuario",$usuario->getUsuario());
+       
+
+        $resultado->bindValue(":usuario", $usuario->getUsuario());
         $resultado->bindValue(":pass",$usuario->getPass());
 
         $resultado->execute();
@@ -59,7 +61,7 @@ class UsuarioDao extends conexion{
      /*este este metodo es para poder obtener usuario y este sea visualizado en el indexlogin.php*/
     public static function getUsuario($usuario){
         $query="SELECT `nombre`, `apellido`, `rut`, `correo`, `usuario`, `privilegio`  FROM `Usuario` WHERE `usuario`=:usuario AND `pass`=:pass";
-       
+        //inner join:SELECT Reserva.hora_in, Reserva.fecha, Reserva.id_reserva, Reserva.rut FROM Reserva INNER JOIN Usuario ON  Usuario.nombre = Usuario.nombre ORDER BY Usuario.nombre;
         self::getConexion();
         $resultado = self::$cnx->prepare($query);
 
@@ -80,6 +82,18 @@ class UsuarioDao extends conexion{
      
 
        return $usuario;
+
+    }
+    public static function getUsuarios(){
+        $query="SELECT `nombre`, `apellido`, `rut`, `correo`, `usuario`, `privilegio`  FROM `Usuario` ";
+        //inner join:SELECT Reserva.hora_in, Reserva.fecha, Reserva.id_reserva, Reserva.rut FROM Reserva INNER JOIN Usuario ON  Usuario.nombre = Usuario.nombre ORDER BY Usuario.nombre;
+        self::getConexion();
+        $resultado = self::$cnx->prepare($query);
+        $resultado->execute();
+
+       $filas=$resultado->fetchAll();/*lo que hace la varible fecth es rellenar la variable resultado y los maneja como un array */
+    
+       return $filas;
 
     }
 

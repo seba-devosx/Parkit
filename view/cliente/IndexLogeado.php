@@ -33,12 +33,14 @@
 	<link rel="apple-touch-icon" href="../../assets/favicon/apple-icon-144x144.png">
 	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
   <link rel="manifest" href="../cliente/manifest.json">
+
 <!--efacto de notificaciones-->
   <script src="./assets/js/Alertas-login.js"></script>
   <link rel="stylesheet" type="text/css" href="./assets/css/overhang.min.css" />
 <script type="text/javascript" src="./assets/js/overhang.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
   <style>
   body {
     font: 400 15px/1.8 Lato, sans-serif;
@@ -291,30 +293,30 @@
           <h4><span class="glyphicon glyphicon-lock"></span> Reserva</h4>
         </div>
         <div class="modal-body">
-          <form role="form" action="assets/php/Reserva.php" method="post">
+          <form role="form" action="../../validations/Reserva_code.php" method="post">
           <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-user"></span><?php echo " ". $_SESSION["email"]?></label>
+              <label for="psw"><span class="glyphicon glyphicon-user"></span class="strong">Hola, la siguiente reserva se realizara al nombre de: </label>
+            </div>
+            <div class="form-group">
+              <label for="usrname"><span class=""></span> Rut(este campo se completa de manera automatica)</label>
+              <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["usuario"]?>"  name="txtUsuario" readonly >
+            </div>
+            <div class="form-group">
+              <label for="usrname"><span class=""></span> Rut(este campo se completa de manera automatica)</label>
+              <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["rut"]?>"  name="txtRut" readonly >
             </div>
             <div class="form-group">
               <label for="psw"><span class=""></span> Hora de Entrada</label>
-              <input type="time" class="form-control" id="horaentrada" name="txtentrada">
+              <input type="time" class="form-control" id="horaentrada" name="txtHora_in">
             </div>
+      
             <div class="form-group">
-              <label for="usrname"><span class=""></span> Hora de Salida</label>
-              <input type="time" class="form-control" id="horasalida" name="txtsalida">
+              <label for="psw"><span class=""></span> Fecha Reserva</label>
+              <input type="date" class="form-control" id="horasalida" name="txtFecha">
             </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span> Rut</label>
-              <input type="text" class="form-control" id="horasalida" name="txtrut">
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span> Estacionamiento</label>
-              <select name="txtesta" id="">
-                <option value="E1">Estacionamiento 1</option>
-                <option value="E2">Estacionamiento 2</option>
-                <option value="E3">Estacionamiento 3</option>
-              </select>
-            </div>
+            
+            
+            
               <button type="submit" class="btn btn-block">Reservar 
                 <span class="glyphicon glyphicon-ok"></span>
               </button>

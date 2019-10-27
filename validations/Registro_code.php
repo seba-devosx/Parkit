@@ -23,9 +23,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
               return print(json_encode($resultado));
             
 
-           
 
-       
         }
         else{
             //echo "este usuario ya esta registrado";      

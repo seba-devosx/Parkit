@@ -23,10 +23,11 @@ if ($_SERVER["REQUEST_METHOD"]== "POST") {
               "correo"      => $usuario->getCorreo(),
               "rut"      =>    $usuario->getRut(),
               "privilegio" =>  $usuario->getPrivilegio(),
-             
+              
+
             );
             return print(json_encode($resultado));
-        
+           
            
         }
     }
