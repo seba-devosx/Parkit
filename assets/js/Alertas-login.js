@@ -17,6 +17,7 @@ $ (document).ready(function(){
                         message: "Usuario encontrado te estamos redirigiendo ...",
                         callback:function(){
                             window.location.href ="./view/cliente/Administrador.php";
+                          //si el indexlogeado no funciona cambilo por el del administrador 
                         }
                         //./view/cliente/Exito.php
                     });

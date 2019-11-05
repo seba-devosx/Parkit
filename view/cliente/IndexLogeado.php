@@ -14,7 +14,7 @@
   
   ?>
 <head>
-<title>Parkit</title>
+<title>Perfil-usuario</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -33,12 +33,31 @@
 	<link rel="apple-touch-icon" href="../../assets/favicon/apple-icon-144x144.png">
 	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
   <link rel="manifest" href="../cliente/manifest.json">
-<!--efacto de notificaciones-->
-  <script src="./assets/js/Alertas-login.js"></script>
+
+<!--efectos de alertas-notificaciones-->
+  <script src="../../assets/js/alertas_push.js"></script>
   <link rel="stylesheet" type="text/css" href="./assets/css/overhang.min.css" />
 <script type="text/javascript" src="./assets/js/overhang.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<!--notificaciones push-->
+  <script src="../../assets/plugins/push.js-master/push.js"></script>
+  <script src="../../assets/plugins/push.js-master/serviceWorker.js"></script>
+  
+  <script>
+      $("#notify-button").click(function(Push){
+        Push.create("Hello world!",{
+            body: "This is example of Push.js Tutorial",
+            icon: '/Logo_small.png',
+            timeout: 2000,
+            onClick: function () {
+                window.focus();
+                this.close();
+            }
+        });
+      });
+  
+  </script>
   <style>
   body {
     font: 400 15px/1.8 Lato, sans-serif;
@@ -184,7 +203,10 @@
 #user{
   margin-top:10px;
 }
-
+#oscurecer {
+  -webkit-filter: grayscale(90%);
+    filter: grayscale(90%);
+}
   
   </style>
 
@@ -208,14 +230,13 @@
       <li><a class="text-uppercase"><?php echo $_SESSION["usuario"]["usuario"]?></a></li>
         <li><a href="#tour">REALIZAR RESERVA</a></li>
         <li><a href="#contact">CONTACTO</a></li>
-        <li id="cerrar"><a href="../Cerrar/CerrarSession.php">CERRAR SESION</a></li>
+        <li id="cerrar"><a href="../../validations/CerrarSession.php">CERRAR SESION</a></li>
       </ul>
       <br>
       
     </div>
   </div>
 </nav>
-
 
 
 <!-- Container (Usuario Section) -->
@@ -235,16 +256,18 @@
                 <p class="text-capitalize">complete el formulario para ser parte de este gran servicio de estacionamientos</p>
                  <!--aca se inicia el slide de intrucciones para explicar el funcionamiento del sistem de reserva-->
                  <p class="text-uppercase">instrucciones de uso:</p>
-                  
+                
                 </div>
             </div>
           </div>
           <br>
-          
+         
+
    
     </div>
     <br>
     <br>
+    
 </div>
   
 
@@ -259,22 +282,22 @@
       <div class="col-sm-4">
         <div class="thumbnail">
           <img src="../../assets/img/ubi.png" alt="Paris" width="400" height="300">
-          <p><strong>Estacionamiento 1</strong></p>
+          <p class="text-uppercase" ><strong>Estacionamientos Las Condes</strong></p>
           <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="../../assets/img/ubi.png" alt="New York" width="400" height="300">
-          <p><strong>Estacionamiento 2</strong></p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
+          <img id="oscurecer" src="../../assets/img/ubi.png" alt="New York" width="400" height="300">
+          <p class="text-uppercase" ><strong>Proximamente(Providencia)</strong></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal" disabled>Otoño2020</button>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img src="../../assets/img/ubi.png" alt="San Francisco" width="400" height="300">
-          <p><strong>Estacionamiento 3</strong></p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
+          <img id="oscurecer"src="../../assets/img/ubi.png" alt="San Francisco" width="400" height="300">
+          <p class="text-uppercase"><strong>Proximamente(Costanera)</strong></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal" disabled>Verano2021</button>
         </div>
       </div>
     </div>
@@ -291,30 +314,30 @@
           <h4><span class="glyphicon glyphicon-lock"></span> Reserva</h4>
         </div>
         <div class="modal-body">
-          <form role="form" action="assets/php/Reserva.php" method="post">
+          <form id="" role="form" action="../../validations/Reserva_code.php" method="post">
           <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-user"></span><?php echo " ". $_SESSION["email"]?></label>
+              <label for="psw"><span class="glyphicon glyphicon-user"></span class="strong">Hola, la siguiente reserva se realizara al nombre de: </label>
+            </div>
+            <div class="form-group">
+              <label for="usrname"><span class=""></span> Rut(este campo se completa de manera automatica)</label>
+              <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["usuario"]?>"  name="txtUsuario" readonly >
+            </div>
+            <div class="form-group">
+              <label for="usrname"><span class=""></span> Rut(este campo se completa de manera automatica)</label>
+              <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["rut"]?>"  name="txtRut" readonly >
             </div>
             <div class="form-group">
               <label for="psw"><span class=""></span> Hora de Entrada</label>
-              <input type="time" class="form-control" id="horaentrada" name="txtentrada">
+              <input type="time" class="form-control" id="horaentrada" name="txtHora_in">
             </div>
+      
             <div class="form-group">
-              <label for="usrname"><span class=""></span> Hora de Salida</label>
-              <input type="time" class="form-control" id="horasalida" name="txtsalida">
+              <label for="psw"><span class=""></span> Fecha Reserva</label>
+              <input type="date" class="form-control" id="horasalida" name="txtFecha">
             </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span> Rut</label>
-              <input type="text" class="form-control" id="horasalida" name="txtrut">
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span> Estacionamiento</label>
-              <select name="txtesta" id="">
-                <option value="E1">Estacionamiento 1</option>
-                <option value="E2">Estacionamiento 2</option>
-                <option value="E3">Estacionamiento 3</option>
-              </select>
-            </div>
+            
+            
+            
               <button type="submit" class="btn btn-block">Reservar 
                 <span class="glyphicon glyphicon-ok"></span>
               </button>

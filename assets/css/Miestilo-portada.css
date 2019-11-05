@@ -1,0 +1,130 @@
+#bar{
+    background-color:#424245;
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 0;
+    background-color: #2d2d30;
+    border: 0;
+    font-size: 11px !important;
+    letter-spacing: 4px;
+    opacity: 0.9;
+    border: transparent;
+    
+
+}
+#uno{
+    background-color:white;
+}
+#texto{
+    border: transparent;
+    letter-spacing: 10px;      
+    font-size:20px;
+    color: #111;
+    font-family: Montserrat, sans-serif, bold;
+}
+#dos{
+    background-color:#424245;
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 0;
+    border: 0;
+    font-size: 11px !important;
+    color: white;
+}
+#tres{
+    background-color:white;
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 0;
+    border: 0;
+    font-size: 15px !important;
+    
+}
+#footer{
+    background-color:#424245;
+    height: 100px;
+    color: white;
+}
+#registro{
+    border:1px solid black;
+    font-family: Montserrat, sans-serif;
+   
+
+}
+#login{
+    border:1px solid black;
+    font-family: Montserrat, sans-serif;
+    
+}
+
+#Nombre_usuario{
+    border-right: none;
+    border-left: none;
+    border-top: none;
+  }
+#Apellido_usuario{
+  border-right: none;
+    border-left: none;
+    border-top: none;
+}
+#Rut_usuario{
+border-right: none;
+    border-left: none;
+    border-top: none;
+}
+#Correo_usuario{
+border-right: none;
+    border-left: none;
+    border-top: none;
+}
+#Edad_usuario{
+border-right: none;
+    border-left: none;
+    border-top: none;
+} 
+#Pass_usuario{
+border-right: none;
+    border-left: none;
+    border-top: none;
+    
+} 
+
+/*el focus sirva para quitar la sombra al seleccionar un campo*/
+  :focus {
+outline: 0;
+}
+#texto-login{
+    border: transparent;
+    letter-spacing: 0px;      
+    font-size:15px;
+    color: #111;
+    font-family: Montserrat, sans-serif, bold;
+}
+#texto-registro{
+    border: transparent;
+    letter-spacing: 0px;      
+    font-size:15px;
+    color: #111;
+    font-family: Montserrat, sans-serif, bold;
+}
+#btn-registro{
+    border: transparent;     
+    font-size:15px;
+    font-family: Montserrat, sans-serif, bold;
+}
+#btn-login{
+    border: transparent;   
+    font-size:15px;
+    font-family: Montserrat, sans-serif, bold;
+}
+#texto2{
+    font-style: italic;
+    color:white;
+    font-size: 15px;
+}
+#titulo{
+    letter-spacing: 10px; 
+}
+.thumbnail {
+    border: none;
+    border-radius: 0;
+    margin-top: 15px;
+   
+  }

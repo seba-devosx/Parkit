@@ -1,20 +1,4 @@
-<?php
 
-$server= "localhost";
-$user = "root";
-$pass ="";
-$db="tesis";
-
-$conn = mysqli_connect($server, $user, $pass, $db);
-
-if (!$conn) 
-{
-   die("Connection failed: " . mysqli_connect_error());
-}
-////consulta a la base de datos////
-$query="SELECT reserva.idReserva, reserva.HoraIn, reserva.HoraOut, reserva.Estacionamiento,usuarios.Nombre,usuarios.Apellido FROM reserva INNER JOIN usuarios ON reserva.Rut = usuarios.Rut";
-$resultado=$conn->query($query);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

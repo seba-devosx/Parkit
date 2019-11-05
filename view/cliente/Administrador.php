@@ -1,17 +1,17 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
   <?php
   session_start();
   if (isset($_SESSION["usuario"])) {
     if ($_SESSION["usuario"]["privilegio"] == 2) {
-      header("location:IndexLogeado.php");
+        header("location:IndexLogeado.php");
     }
   }
   else{
     header("location:Portada.php");
   }
- 
   ?>
 <head>
 <title>Parkit</title>
@@ -23,7 +23,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  	<!--aqui comienza el codigo para el icono de la app en los dispositivos moviles y que para que la barra cambie de color-->
+  <!--datatable content-->
+  <script src="../../assets/js/datatable.js"></script>
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../assets/js/jquery-ui/jquery-ui.min.css" />
+  <link href="../../assets/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+  <script src="../../assets/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+  <script src="plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+  <script src="../../assets/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+
+	<!--aqui comienza el codigo para el icono de la app en los dispositivos moviles y que para que la barra cambie de color-->
 	<meta name="theme-color" content="#BBB9BE">
 	<meta name="MobileOptimized" content="width">
 	<meta name="HandheldFriendly" content="true">
@@ -34,7 +43,7 @@
 	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
   <link rel="manifest" href="../cliente/manifest.json">
 <!--efacto de notificaciones-->
-  <script src="./assets/js/Alertas-login.js"></script>
+<script src="./assets/js/Alertas-login.js"></script>
   <link rel="stylesheet" type="text/css" href="./assets/css/overhang.min.css" />
 <script type="text/javascript" src="./assets/js/overhang.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
@@ -206,9 +215,8 @@
       <ul class="nav navbar-nav navbar-right">
       
       <li><a class="text-uppercase"><?php echo $_SESSION["usuario"]["usuario"]?></a></li>
-        <li><a href="#tour">REALIZAR RESERVA</a></li>
-        <li><a href="#contact">CONTACTO</a></li>
-        <li><a href="../Cerrar/CerrarSession.php">CERRAR SESION</a></li>
+        <li><a href="Administrador.php">VOLVER AL INCIO</a></li>
+        <li><a href="../../validations/CerrarSession.php">CERRAR SESION</a></li>
       </ul>
       <br>
       
@@ -222,211 +230,55 @@
 <div id="band" class="container text-center">
 <i id="user"class='fas fa-user-circle' style='font-size:60px;color:black'></i>
   <h3 class="text-uppercase">Bienvenido:<?php echo $_SESSION["usuario"]["nombre"]?>-<?php echo $_SESSION["usuario"]["apellido"]?>||<?php echo $_SESSION["usuario"]["privilegio"] == 1 ? 'admin' : 'cliente';?></h3>
-  <p class="text-justify text text-capitalize center-block"><h1 class="text-capitalize">nota:</h1>Antes de iniciar a interactuar con el sistema de reserva te dejamos unas intrucciones para su uso,
-     si ya conoces el funcionamiento omite este comentario y sube al siguiente nivel del desarrollo plazas 100% automatizadas del pais.</p>
-  <p><em>No Esperes Mas!!!</em></p>
-  <p></p>
   <br>
   <div class="row">
-      <div class="col-lg-12 text-center ">
-          <div id="Registro" class="btn" data-toggle="collapse" data-target="#Registro-collapse">Registro</div>
+    <div class="col-md-12">
+    <div class="w3-container">
+    <div id="Instrucciones" class="btn" data-toggle="collapse" data-target="#Instrucciones-collapse">Instrucciones</div>
           <div class="w3-container">
-              <div id="Registro-collapse" class="collapse w3-panel w3-card">
-                <p class="text-capitalize">complete el formulario para ser parte de este gran servicio de estacionamientos</p>
+              <div id="Instrucciones-collapse" class="collapse w3-panel w3-card">
+                <p class="text-capitalize">Hola,<?php echo $_SESSION["usuario"]["nombre"]?> si has llegado hasta aqui es por te han seleccionaod como administrador de este sistema</p>
                  <!--aca se inicia el slide de intrucciones para explicar el funcionamiento del sistem de reserva-->
                  <p class="text-uppercase">instrucciones de uso:</p>
-                  
+                 <ul>
+                 <li>A cotinuacion se detallaran el uso de como hacer uso del sistema que queberas administrar a continuacion</li>
+                 <li >Si quieres ver los usuarios registrador selecciona ver usuarios, adentro de ahi deberas leer las instrcciones antes de relizar cualquer accion dentro del sistema</li>
+                 <li >Si quieres ver las reservas registradas selecciona ver registradas, adentro de ahi deberas leer las instrcciones antes de relizar cualquer accion dentro del sistema</li>
+                 </ul>
+                
                 </div>
             </div>
-          </div>
-          <br>
-          
-   
-    </div>
-    <br>
-    <br>
-</div>
-  
-
-<!-- Container (TOUR Section) -->
-<div id="tour" class="bg-1">
-  <div class="container">
-    <h3 class="text-center">ESTACIONAMIENTOS</h3>
-    <p class="text-center">El Mejor Servicio De Automatizacion De Estacionamiento
-        <br>Selecciona cualquier estacionamiento</p>
-
- <div class="row text-center">
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="../../assets/img/ubi.png" alt="Paris" width="400" height="300">
-          <p><strong>Estacionamiento 1</strong></p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="../../assets/img/ubi.png" alt="New York" width="400" height="300">
-          <p><strong>Estacionamiento 2</strong></p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="../../assets/img/ubi.png" alt="San Francisco" width="400" height="300">
-          <p><strong>Estacionamiento 3</strong></p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4><span class="glyphicon glyphicon-lock"></span> Reserva</h4>
-        </div>
-        <div class="modal-body">
-          <form role="form" action="assets/php/Reserva.php" method="post">
-          <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-user"></span><?php echo " ". $_SESSION["email"]?></label>
-            </div>
-            <div class="form-group">
-              <label for="psw"><span class=""></span> Hora de Entrada</label>
-              <input type="time" class="form-control" id="horaentrada" name="txtentrada">
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span> Hora de Salida</label>
-              <input type="time" class="form-control" id="horasalida" name="txtsalida">
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span> Rut</label>
-              <input type="text" class="form-control" id="horasalida" name="txtrut">
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span> Estacionamiento</label>
-              <select name="txtesta" id="">
-                <option value="E1">Estacionamiento 1</option>
-                <option value="E2">Estacionamiento 2</option>
-                <option value="E3">Estacionamiento 3</option>
-              </select>
-            </div>
-              <button type="submit" class="btn btn-block">Reservar 
-                <span class="glyphicon glyphicon-ok"></span>
-              </button>
+              <div class="w3-panel w3-card">
+                <p class="text-capitalize">Panel de control del administrador</p>
               
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
-            <span class="glyphicon glyphicon-remove"></span> Cancelar
-          </button>
-          <p><a href="#">Necesitas Ayuda ?</a></p>
-        </div>
-      </div>
+                <div class="btn-group-vertical" role="group">
+                <p>Aqui puedes ver las reservas relizadas en el sistema ATENCION NO DEBES TOCAAS NADA SI NO ES SOLICITADO!! </p>
+                <button type="button" class="btn btn-default"><a href="../../validations/Ver_reservas.php">Ver reservas registradas</a></button>
+                <p>Aqui puedes ver las reservas relizadas en el sistema ATENCION NO DEBES TOCAAS NADA SI NO ES SOLICITADO!! </p>
+                <button type="button" class="btn btn-default"><a href="../../validations/Ver_usuarios.php">Ver usuarios registrados</a></button>
+                <p></p>
+                
+                </div>
+                
+                
+              </div>
+        </div>    
+    </div>
+    <div class="col-md-12">
+       
     </div>
   </div>
+
+    <br>
+    <br>
 </div>
 
-<!-- Container (Contact Section) -->
-<div id="contact" class="container">
-  <h3 class="text-center">Contacto</h3>
-  <p class="text-center"><em>Soporte las 24hrs!</em></p>
-
-  <div class="row">
-    <div class="col-md-4">
-      <p>Escribenos!</p>
-      <p><span class="glyphicon glyphicon-map-marker"></span>Santiago, Chile</p>
-      <p><span class="glyphicon glyphicon-phone"></span>Telefono: +00 1515151515</p>
-      <p><span class="glyphicon glyphicon-envelope"></span>Email: SoportParkit@Parkitchile.cl</p>
-    </div>
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-        </div>
-      </div>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-      <br>
-      <div class="row">
-        <div class="col-md-12 form-group">
-          <button class="btn pull-right" type="submit">Enviar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br>
-  <h3 class="text-center">Dueños</h3>  
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Sebastian</a></li>
-    <li><a data-toggle="tab" href="#menu1">Joaquin</a></li>
-    <li><a data-toggle="tab" href="#menu2">Rafael</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h2>Sebastian Aravena, Dueño</h2>
-      <p>Man, we've been on the road for some time now. Looking forward to lorem ipsum.</p>
-    </div>
-    <div id="menu1" class="tab-pane fade">
-      <h2>Joaquin Dreau, Dueño</h2>
-      <p>Always a pleasure people! Hope you enjoyed it as much as I did. Could I BE.. any more pleased?</p>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-      <h2>Rafael Guerra, Dueño</h2>
-      <p>I mean, sometimes I enjoy the show, but other times I enjoy other things.</p>
-    </div>
-  </div>
-</div>
-
-<!-- Image of location/map <img src="" class="img-responsive" style="width:100%"> -->
 
 
-<!-- Footer -->
-<footer class="text-center">
-  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
-    <span class="glyphicon glyphicon-chevron-up"></span>
-  </a><br><br>
-  <p><a href="#" data-toggle="tooltip" title="Email"></a>Parkit.solution@parkitchile.cl</p> 
-</footer>
-
-<script>
-$(document).ready(function(){
-  // Initialize Tooltip
-  $('[data-toggle="tooltip"]').tooltip(); 
   
-  // Add smooth scrolling to all links in navbar + footer link
-  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+  
 
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
 
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 900, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-})
-</script>
 
 </body>
 </html>
