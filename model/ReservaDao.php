@@ -33,15 +33,15 @@ class ReservaDao extends conexion{
 
     }
     public static function getReservas(){
-        $query="SELECT `hora_in`, `rut`, `usuario`, `fecha`, `id_reserva` FROM `Reserva` ";
+        $query="SELECT `hora_in`, `rut`, `usuario`, `fecha`, `id_reserva`, `usuario` FROM `Reserva` ";
        
         self::getConexion();
         $resultado = self::$cnx->prepare($query);
 
         $resultado->execute();
-       $filas = $resultado->fetchAll();
+        $filas = $resultado->fetchAll();
 
-       return $filas;
+        return $filas;
 
     }
     

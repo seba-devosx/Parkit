@@ -111,8 +111,8 @@
   }
   .btn {
     padding: 10px 20px;
-    background-color: #333;
-    color: #f1f1f1;
+    background-color: ;
+    color: ;
     border-radius: 0;
     transition: .2s;
   }
@@ -208,15 +208,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage"><div></div><img src="../../assets/img/Logo.png" width="70" height="70"></a>
+      <a class="navbar-brand" href="#myPage"><div></div><img src="../assets/img/Logo.png" width="70" height="70"></a>
       <h5 class="navbar-brand"navbar-brand">Parkit</h5>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
       
       <li><a class="text-uppercase"><?php echo $_SESSION["usuario"]["usuario"]?></a></li>
-        <li><a href="Administrador.php">VOLVER AL INCIO</a></li>
-        <li><a href="../../validations/CerrarSession.php">CERRAR SESION</a></li>
+        <li><a href="../view/cliente/Administrador.php">VOLVER AL INCIO</a></li>
+        <li><a href="../validations/Ver_usuarios.php">VER USUARIOS</a></li>
+        <li><a href="CerrarSession.php">CERRAR SESION</a></li>
       </ul>
       <br>
       
@@ -227,6 +228,16 @@
 
 
 <!-- Container (Usuario Section) -->
+<?php
+
+    require_once '../controller/ReservaControlador.php';
+    $filas = ReservaControlador::getReservas();
+
+
+    
+?>
+
+
 <div id="band" class="container text-center">
 <i id="user"class='fas fa-user-circle' style='font-size:60px;color:black'></i>
   <h3 class="text-uppercase">Bienvenido:<?php echo $_SESSION["usuario"]["nombre"]?>-<?php echo $_SESSION["usuario"]["apellido"]?>||<?php echo $_SESSION["usuario"]["privilegio"] == 1 ? 'admin' : 'cliente';?></h3>
@@ -234,37 +245,49 @@
   <div class="row">
     <div class="col-md-12">
     <div class="w3-container">
-    <div id="Instrucciones" class="btn" data-toggle="collapse" data-target="#Instrucciones-collapse">Instrucciones</div>
-          <div class="w3-container">
-              <div id="Instrucciones-collapse" class="collapse w3-panel w3-card">
-                <p class="text-capitalize">Hola,<?php echo $_SESSION["usuario"]["nombre"]?> si has llegado hasta aqui es por te han seleccionaod como administrador de este sistema</p>
-                 <!--aca se inicia el slide de intrucciones para explicar el funcionamiento del sistem de reserva-->
-                 <p class="text-uppercase">instrucciones de uso:</p>
-                 <ul>
-                 <li>A cotinuacion se detallaran el uso de como hacer uso del sistema que queberas administrar a continuacion</li>
-                 <li >Si quieres ver los usuarios registrador selecciona ver usuarios, adentro de ahi deberas leer las instrcciones antes de relizar cualquer accion dentro del sistema</li>
-                 <li >Si quieres ver las reservas registradas selecciona ver registradas, adentro de ahi deberas leer las instrcciones antes de relizar cualquer accion dentro del sistema</li>
-                 </ul>
-                
-                </div>
-            </div>
               <div class="w3-panel w3-card">
-                <p class="text-capitalize">Panel de control del administrador</p>
-              
-                <div class="btn-group-vertical" role="group">
-                <p>Aqui puedes ver las reservas relizadas en el sistema ATENCION NO DEBES TOCAAS NADA SI NO ES SOLICITADO!! </p>
-                <button type="button" class="btn btn-default"><a href="../../validations/Ver_reservas.php">Ver reservas registradas</a></button>
-                <p>Aqui puedes ver las reservas relizadas en el sistema ATENCION NO DEBES TOCAAS NADA SI NO ES SOLICITADO!! </p>
-                <button type="button" class="btn btn-default"><a href="../../validations/Ver_usuarios.php">Ver usuarios registrados</a></button>
-                <p></p>
-                
+                <p class="text-capitalize">Panel de Control de admiistrador</p>
+                <p>hacer botones para que telleven a disintos apartados que seren reservas relizadas, usuarios registrados y administrador de piso </p>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                             <tr>
+                                <td>HORA INGRESO </td>
+                                <td>RUT</td>
+                                <td>NICKNAME</td>
+                                <td>FECHA</td>
+                                <td>ID RESERVA</td>
+                                
+                             </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($filas as $reservas){ ?>
+                                <tr>
+                                <td><?php echo $reservas["hora_in"]?></td>
+                                            <td><?php echo $reservas["rut"]?></td>
+                                            <td><?php echo $reservas["usuario"]?></td>
+                                            <td><?php echo $reservas["fecha"]?></td>
+                                            <td><?php echo $reservas["id_reserva"]?></td>
+                                            <td>
+                                                <a  id="boton" class="btn btn-success btn-sm" onclick="javascript:return confirm('¿Seguro que quieres dar de baja esta cuenta?');" href="?c=cliente&a=Eliminar&id=<?php echo $r->id; ?>">Dar de baja</a>
+                                            </td>
+
+                                <?php } ?>
+                                </tr>
+
+                            </tbody>
+                        
+                        </table>
+                        
+                     </div>
+                    
                 </div>
-                
                 
               </div>
         </div>    
     </div>
-    <div class="col-md-12">
+   
        
     </div>
   </div>
@@ -272,11 +295,10 @@
     <br>
     <br>
 </div>
+       
+ 
 
-
-
-  
-  
+</body>
 
 
 

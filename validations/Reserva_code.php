@@ -1,4 +1,6 @@
-
+<script src="../assets/js/jquery-3.4.1.js"></script>
+  <script src="../assets/plugins/push.js-master/push.js"></script>
+  <script src="../assets/plugins/push.js-master/serviceWorker.js"></script>
 <?php
 
 include '../controller/ReservaControlador.php';
@@ -13,8 +15,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             
             
         if(ReservaControlador::registro($txtHora_in,$txtRut,$txtFecha,$txtUsuario)){
-                echo"resgitrado";
-                
+            header('Location: Boleta_QR.php');
+            
         }
         else{
             echo "esto no funciona";      

@@ -15,7 +15,7 @@ class ReservaControlador{
         return ReservaDao::registro_reserva($obj_reserva);
     }
     
-    public function getReservas($reserva){
+    public function getReservas(){
         
         return ReservaDao::getReservas();
     }

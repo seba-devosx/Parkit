@@ -1,5 +1,6 @@
 <?php
 include '../model/UsuarioDao.php';
+
 class UsuarioControlador{
     public static function login($usuario,$pass){
         $obj_usuario = new Usuario();

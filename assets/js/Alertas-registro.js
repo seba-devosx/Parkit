@@ -21,7 +21,8 @@ $ (document).ready(function(){
                             window.location.href ="Location:http://localhost/parkit/";
                             $("body").overhang({
                                 type: "success",
-                                message: "!!Listo Ahora Puedes Ingresar",
+                                timeout: 100000,
+                                message: "!!Listo Ahora Puedes Logearte",
                                 
                                 //./view/cliente/Exito.php
                                 

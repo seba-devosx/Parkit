@@ -8,4 +8,17 @@ function validar_campo($campo){
 
     return $campo;
 }
+function getPrivilegio($p){
+$privilegio = "-No Definido-";
+    switch($p){
+        case 1:
+        $privilegio = "Administrador";
+        
+        break;
+        case 2:
+        $privilegio = "Usuario";
+        break;
+    }
+    return $privilegio;
+}
 ?>

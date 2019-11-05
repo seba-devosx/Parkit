@@ -1,6 +1,7 @@
 <?php
 include 'Conexion.php';
 include '../entidades/Usuario.php';
+
 class UsuarioDao extends conexion{
 
     protected static $cnx;
