@@ -7,6 +7,8 @@ class Usuario{
 	private $pass;
 	private $usuario;
 	private $privilegio;
+	private $numero;
+	private $patente;
 
 	public function getNombre(){
 		return $this->nombre;
@@ -55,6 +57,7 @@ class Usuario{
 	public function setUsuario($usuario){
 		$this->usuario = $usuario;
 	}
+
 	public function getPrivilegio(){
 		return $this->Privilegio;
 	}
@@ -62,6 +65,22 @@ class Usuario{
 	public function setPrivilegio($privilegio){
 		$this->Privilegio = $privilegio;
 	}
+
+	public function getNumero(){
+		return $this->numero;
+	}
+	public function setNumero($numero){
+		$this->numero = $numero;
+	}
+
+	public function getPatente(){
+		return $this->patente;
+	}
+	public function setPatente($patente){
+		$this->patente = $patente;
+	}
+
+
 
 
 
