@@ -6,6 +6,8 @@ class Reserva{
  private $hora_in;
  private $fecha;
  private $reserva;
+ private $patente;
+ private $numero;
 
  public function getUsuario(){
     return $this->usuario;
@@ -53,6 +55,20 @@ public function getReserva(){
 
 public function setReserva($reserva){
     $this->reserva = $reserva;
+}
+
+public function getNumero(){
+    return $this->numero;
+}
+public function setNumero($numero){
+    $this->numero = $numero;
+}
+
+public function getPatente(){
+    return $this->patente;
+}
+public function setPatente($patente){
+    $this->patente = $patente;
 }
 }
 

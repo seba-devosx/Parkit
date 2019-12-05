@@ -4,15 +4,19 @@
   <?php
   session_start();
   if (isset($_SESSION["usuario"])) {
-    if ($_SESSION["usuario"]["privilegio"] == 1) {
-      header("location:Administrador.php");
+    if ($_SESSION["usuario"]["privilegio"] == 2) {
+      
+    }
+    else{
+      header("location:http://localhost/parkit/");
     }
   }
   else{
-    header("location:Portada.php");
+    header("location:http://localhost/parkit/");
   }
   
   ?>
+  
 <head>
 <title>Perfil-usuario</title>
   <meta charset="utf-8">
@@ -35,29 +39,31 @@
   <link rel="manifest" href="../cliente/manifest.json">
 
 <!--efectos de alertas-notificaciones-->
-  <script src="../../assets/js/alertas_push.js"></script>
-  <link rel="stylesheet" type="text/css" href="./assets/css/overhang.min.css" />
-<script type="text/javascript" src="./assets/js/overhang.min.js"></script>
+
+  
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-<script src='https://kit.fontawesome.com/a076d05399.js'></script>
-<!--notificaciones push-->
-  <script src="../../assets/plugins/push.js-master/push.js"></script>
-  <script src="../../assets/plugins/push.js-master/serviceWorker.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script>
   
-  <script>
-      $("#notify-button").click(function(Push){
-        Push.create("Hello world!",{
-            body: "This is example of Push.js Tutorial",
-            icon: '/Logo_small.png',
-            timeout: 2000,
-            onClick: function () {
-                window.focus();
-                this.close();
-            }
-        });
+
+
+
+  $(document).ready(function(){
+    $("#hola").click(function(){
+          jQuery(function() {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Reserva Realizada y pago realizado',
+              showConfirmButton: false,
+              timer: 3000
+            });
+         });
+         
       });
-  
-  </script>
+   });
+</script>
+ 
   <style>
   body {
     font: 400 15px/1.8 Lato, sans-serif;
@@ -229,6 +235,7 @@
       
       <li><a class="text-uppercase"><?php echo $_SESSION["usuario"]["usuario"]?></a></li>
         <li><a href="#tour">REALIZAR RESERVA</a></li>
+        <li><a href="./Mis_Reserva.php"> MIS RESERVAS</a></li>
         <li><a href="#contact">CONTACTO</a></li>
         <li id="cerrar"><a href="../../validations/CerrarSession.php">CERRAR SESION</a></li>
       </ul>
@@ -262,8 +269,8 @@
           </div>
           <br>
          
+         
 
-   
     </div>
     <br>
     <br>
@@ -314,7 +321,7 @@
           <h4><span class="glyphicon glyphicon-lock"></span> Reserva</h4>
         </div>
         <div class="modal-body">
-          <form id="" role="form" action="../../validations/Reserva_code.php" method="post">
+          <form id="formRegistro" role="form" action="../../validations/Reserva_code.php" method="post">
           <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-user"></span class="strong">Hola, la siguiente reserva se realizara al nombre de: </label>
             </div>
@@ -327,22 +334,32 @@
               <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["rut"]?>"  name="txtRut" readonly >
             </div>
             <div class="form-group">
+              <label for="usrname"><span class=""></span>Numero de emergencia</label>
+              <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["numero"]?>"  name="txtNumero" readonly >
+            </div>
+            <div class="form-group">
+              <label for="usrname"><span class=""></span>Patente del vehiculo </label>
+              <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["patente"]?>"  name="txtPatente" readonly >
+            </div>
+            <div class="form-group">
               <label for="psw"><span class=""></span> Hora de Entrada</label>
-              <input type="time" class="form-control" id="horaentrada" name="txtHora_in">
+              <input type="time" class="form-control" id="horaentrada"  min="08:00:00" max="20:00:00" name="txtHora_in" required>
             </div>
       
             <div class="form-group">
               <label for="psw"><span class=""></span> Fecha Reserva</label>
-              <input type="date" class="form-control" id="horasalida" name="txtFecha">
+              <input type="date" class="form-control" id="horasalida" value="2019-04-01"  min="2019-04-01"  max="2030-04-01" name="txtFecha" required>
             </div>
             
+            <h1>MONTO TOTAL DE LA RESERVA: $1000.</h1>
             
             
-              <button type="submit" class="btn btn-block">Reservar 
+              <button id="hola" type="submit"  class="btn btn-block">Reservar 
                 <span class="glyphicon glyphicon-ok"></span>
               </button>
               
           </form>
+          
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
@@ -352,6 +369,7 @@
         </div>
       </div>
     </div>
+    
   </div>
 </div>
 
@@ -453,3 +471,7 @@ $(document).ready(function(){
 
 </body>
 </html>
+
+
+
+                        

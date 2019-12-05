@@ -202,6 +202,10 @@
 #user{
   margin-top:10px;
 }
+.glyphicon.glyphicon-qrcode{
+    font-size: 75px;
+    color:black;
+}
 
   
   </style>
@@ -227,7 +231,7 @@
         <li><a href="../view/cliente/IndexLogeado.php">REALIZAR RESERVA</a></li>
         <li><a href="#tour">TICKET DE RESERVA</a></li>
         <li><a href="#contact">CONTACTO</a></li>
-        <li id="cerrar"><a href="../../validations/CerrarSession.php">CERRAR SESION</a></li>
+        <li id="cerrar"><a href="../validations/CerrarSession.php">CERRAR SESION</a></li>
       </ul>
       <br>
       
@@ -278,8 +282,9 @@
  <div class="row text-center">
       <div class="col-sm-4 col-md-offset-4">
         <div class="thumbnail">
-          <img src="../../assets/img/ubi.png" alt="Paris" width="400" height="300">
-          <p><strong>Tu estacionamiento es </strong></p>
+        <br>
+        <i class="glyphicon glyphicon-qrcode"></i>
+          <p><strong>Codigo QR que Representa Tu Entrada</strong></p>
           <button class="btn" data-toggle="modal" data-target="#myModal">Codigo QR estacionamiento</button>
         </div>
       </div>
@@ -296,38 +301,50 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4><span class="glyphicon glyphicon-lock"></span> Reserva</h4>
+          <h4><span class="glyphicon glyphicon-lock"></span> CodigoQR</h4>
         </div>
         <div class="modal-body">
-          <form id="" role="form" action="../../validations/Reserva_code.php" method="post">
-          <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-user"></span class="strong">Hola, la siguiente reserva se realizara al nombre de: </label>
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span> Rut(este campo se completa de manera automatica)</label>
-              <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["usuario"]?>"  name="txtUsuario" readonly >
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span> Rut(este campo se completa de manera automatica)</label>
-              <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["rut"]?>"  name="txtRut" readonly >
-            </div>
-            <div class="form-group">
-              <label for="psw"><span class=""></span> Hora de Entrada</label>
-              <input type="time" class="form-control" id="horaentrada" name="txtHora_in">
-            </div>
-      
-            <div class="form-group">
-              <label for="psw"><span class=""></span> Fecha Reserva</label>
-              <input type="date" class="form-control" id="horasalida" name="txtFecha">
-            </div>
-            
-            
-            
-              <button type="submit" class="btn btn-block">Reservar 
-                <span class="glyphicon glyphicon-ok"></span>
-              </button>
-              
-          </form>
+          <div class="text-center">
+          <h2>Debe Mostrar Este Codigo Al Entrar</h2>
+          <?php
+
+                  include('./../assets/lib/phpqrcode/qrlib.php');
+                
+
+                  // how to save PNG codes to server
+                  
+                  $tempDir = './../temp/';
+                  
+                  $codeContents = echo $_SESSION["usuario"]["apellido"];
+                  
+                  // we need to generate filename somehow, 
+                  // with md5 or with database ID used to obtains $codeContents...
+                  $fileName = '005_file_'.md5($codeContents).'.png';
+                  
+                  $pngAbsoluteFilePath = $tempDir.$fileName;
+                  $urlRelativeFilePath = $tempDir.$fileName;
+                  
+                  // generating
+                  if (!file_exists($pngAbsoluteFilePath)) {
+                      QRcode::png($codeContents, $pngAbsoluteFilePath);
+                      //echo 'File generated!';
+                      echo '<hr />';
+                  } else {
+                      //echo 'File already generated! We can use this cached file to speed up site on common codes!';
+                      //echo '<hr />';
+                  }
+                  
+                  // echo 'Server PNG File: '.$pngAbsoluteFilePath;
+                 // echo '<hr />';
+                  
+                  // displaying
+                  echo '<img src="'.$urlRelativeFilePath.'" />';
+                  
+
+            ?>
+          
+          
+          </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">

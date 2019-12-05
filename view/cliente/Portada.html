@@ -21,7 +21,8 @@
 	<link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon" />
 	<link rel="apple-touch-icon" href="../../assets/favicon/apple-icon-144x144.png">
 	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
-  <link rel="manifest" href="../cliente/manifest.json">
+  <link rel="manifest" href="./manifest.json">
+  <link  href="./sw.js">
 <!--efacto de notificaciones-->
   <script src="./assets/js/Alertas-login.js"></script>
   <script src="./assets/js/Alertas-registro.js"></script>
@@ -202,6 +203,16 @@ border-right: none;
     border-left: none;
     border-top: none;
 } 
+#Patente{
+border-right: none;
+    border-left: none;
+    border-top: none;
+} 
+#Numero{
+border-right: none;
+    border-left: none;
+    border-top: none;
+} 
 
 /*el focus sirva para quitar la sombra al seleccionar un campo*/
   :focus {
@@ -229,6 +240,7 @@ outline: 0;
         <li><a href="#tour">NOSOTROS</a></li>
         <li><a href="#contact">CONTACTO</a></li>
       </ul>
+      
     </div>
   </div>
 </nav>
@@ -299,11 +311,14 @@ outline: 0;
                     <p class="text-justify">RUT:(sin puntos solo guion)</p><div class="text-justify"><input type="text" name="txtRut" id="Rut_usuario" placeholder="Ingrese su Rut"required></div>
                     <p class="text-justify">CORREO:</p><div class="text-justify"><input type="text" name="txtCorreo" id="Correo_usuario" size="30"placeholder="Ingrese su Correo@.com"required></div><br>
                     <p class="text-justify">NICKNAME:</p><div class="text-justify"><input type="text" name="txtUsuario" id="Correo_usuario" size="30"placeholder="Ingrese su nickname"required></div><br>
+                    <p class="text-justify">NUMERO TELEFONICO:</p><div class="text-justify"><input type="text" name="txtNumero" id="Numero" size="30"placeholder="Ingrese su numero"required></div><br>
+                    <p class="text-justify">PATENTE DE TU VEHICULO:</p><div class="text-justify"><input type="text" name="txtPatente" id="Patente" size="30"placeholder="Ingrese su patente"required></div><br>
                     <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="txtPass" id="Pass_usuario" placeholder="Ingrese su contraseña"required></div><br>
                     <p class="text-justify"></p><div class="text-justify text-capitalize" ><input type="checkbox" name="Termino" id="Termino_usuario"required>Usted acepta los terminos y condicion de este servicio</div>
                     
                     <button class="btn btn-block" type="submit">Registar</button>
                   </form>
+                  
                 </div>
             </div>
           </div>

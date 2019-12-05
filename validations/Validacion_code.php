@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"]== "POST") {
         $txtUsuario =validar_campo( $_POST["txtUsuario"]);
         $txtPass = validar_campo($_POST["txtPass"]);
     
-        $resultado = array("estado"=>"true");
+        $resultado = array("estado"=>"true"); 
 
         if(UsuarioControlador::login($txtUsuario,$txtPass)){
             
@@ -23,7 +23,8 @@ if ($_SERVER["REQUEST_METHOD"]== "POST") {
               "correo"      => $usuario->getCorreo(),
               "rut"      =>    $usuario->getRut(),
               "privilegio" =>  $usuario->getPrivilegio(),
-              
+              "numero"  => $usuario->getNumero(),
+              "patente"   => $usuario->getPatente(),
 
             );
             return print(json_encode($resultado));
