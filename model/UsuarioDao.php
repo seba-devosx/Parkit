@@ -37,7 +37,8 @@ class UsuarioDao extends conexion{
         return false;
 
     }
-    /*esta funcion esppara el registo de usuario y debe ser llaamada en el usuario controlador  */
+    /*esta funcion es para el registo de usuario y debe ser llamada en el usuario a travez del controlador, si el booleano es verdaro se va a insertar en la base de datos y mostrara
+    un mesaje de que se relizado de no ser asi y es falso mostrara un mensaje de que ya se encuentra almacenado en la base de datos, dichos valores ya pueden estar almacenados */
     public static function registro($usuario){
         $query="INSERT INTO `Usuario`(`nombre`, `apellido`, `rut`, `correo`, `pass`, `usuario`,`privilegio`, `patente`, `numero`) VALUES (:nombre,:apellido,:rut,:correo,:pass,:usuario,:privilegio,:numero,:patente)";
         
@@ -62,7 +63,7 @@ class UsuarioDao extends conexion{
         return false;
 
     }
-    //
+    
      /*este este metodo es para poder obtener usuario y este sea visualizado en el indexlogin.php*/
     public static function getUsuario($usuario){
         $query="SELECT `nombre`, `apellido`, `rut`, `correo`, `usuario`, `privilegio`, `patente`, `numero`  FROM `Usuario` WHERE `usuario`=:usuario AND `pass`=:pass";
@@ -91,7 +92,7 @@ class UsuarioDao extends conexion{
        return $usuario;
 
     }
-    //este emtodo sirve para porder trer todos los uaurios contenidos en la abse de datos 
+    //este emtodo sirve para porder trer todos los usuarios contenidos en la base de datos 
     public static function getUsuarios(){
         $query="SELECT `nombre`, `apellido`, `rut`, `correo`, `usuario`, `privilegio`, `patente`, `numero`  FROM `Usuario` ";
         //inner join:SELECT Reserva.hora_in, Reserva.fecha, Reserva.id_reserva, Reserva.rut FROM Reserva INNER JOIN Usuario ON  Usuario.nombre = Usuario.nombre ORDER BY Usuario.nombre;
@@ -105,7 +106,12 @@ class UsuarioDao extends conexion{
 
     }
 
-   
+
+
+
+
+
+   //aqui empeiza los metoso dirgidos hacia usuario pero desde el lado del administrador
 
     //este metodo sirva para poder eleiminar un usuario atraves de sus propio id, esto lo unico que retorna es un boolen
     public function eliminarUsuario($rut){
@@ -125,11 +131,12 @@ class UsuarioDao extends conexion{
         return false;
 
     }
+  
     
     
     //este metodo sirve para actualizar los datos del suario dentro de la base de datos, esto sirve siempre y cuando el usuario exista
     public static function actualizarUsuario($usuario){
-        $query="UPDATE INTO `Usuario`(`nombre`, `apellido`, `rut`, `correo`, `pass`, `usuario`,`privilegio`) VALUES (:nombre,:apellido,:rut,:correo,:pass,:usuario,:privilegio)";
+        $query="UPDATE `Usuario` SET `nombre`=':nombre',`apellido`=':apellido',`rut`=':rut',`correo`=':correo',`pass`=':pass',`usuario`=':usuario',`patente`=':patente',`numero`=':numero' WHERE `rut` = :rut)";
         
         self::getConexion();
         $resultado = self::$cnx->prepare($query);
@@ -139,8 +146,11 @@ class UsuarioDao extends conexion{
         $resultado->bindValue(":rut",$usuario->getRut());
         $resultado->bindValue(":correo",$usuario->getCorreo());
         $resultado->bindValue(":pass",$usuario->getPass());
-        $resultado->bindValue(":usuario",$usuario->getUsuario());
-        $resultado ->bindValue(":privilegio",$usuario->getPrivilegio());
+        $resultado->bindValue(":usuario",$usuario->getUsuario()); 
+        $resultado->bindValue(":patente",$usuario->getPatente()); 
+        $resultado->bindValue(":numero",$usuario->getNumero()); 
+        
+      
 
         if($resultado->execute()){
             return true;
@@ -176,9 +186,9 @@ class UsuarioDao extends conexion{
     }
    
 
-     //este emtodo sirve para porder trer todos los uaurios contenidos en la abse de datos 
+     //este emtodo sirve para porder traer todos los uaurios contenidos en la abse de datos 
       public static function getUsuarioporrut($rut){
-        $query="SELECT `nombre`, `apellido`, `rut`, `correo`, `usuario`, `privilegio`, `patente`, `numero`  FROM `Usuario` WHERE `rut`=:rut";
+        $query="SELECT `nombre`, `apellido`, `rut`, `correo`, `usuario`, `privilegio`, `patente`, `numero`,`pass`  FROM `Usuario` WHERE `rut`=:rut";
         //inner join:SELECT Reserva.hora_in, Reserva.fecha, Reserva.id_reserva, Reserva.rut FROM Reserva INNER JOIN Usuario ON  Usuario.nombre = Usuario.nombre ORDER BY Usuario.nombre;
         self::getConexion();
         $resultado = self::$cnx->prepare($query);
@@ -199,25 +209,13 @@ class UsuarioDao extends conexion{
        $usuario->setPrivilegio($filas["privilegio"]);
        $usuario->setNumero($filas["numero"]);
        $usuario->setPatente($filas["patente"]);
+       $usuario->setPass($filas["pass"]);
      
 
        return $usuario;
 
     }
-    //este metodo llena combobx
-    //este emtodo sirve para porder trer todos los uaurios contenidos en la abse de datos 
-    public static function getInfo(){
-        $query="SELECT  `rut` FROM `Usuario` ";
-        //inner join:SELECT Reserva.hora_in, Reserva.fecha, Reserva.id_reserva, Reserva.rut FROM Reserva INNER JOIN Usuario ON  Usuario.nombre = Usuario.nombre ORDER BY Usuario.nombre;
-        self::getConexion();
-        $resultado = self::$cnx->prepare($query);
-        $resultado->execute();
-
-       $fila=$resultado->fetchAll();/*lo que hace la varible fecth es rellenar la variable resultado y los maneja como un array */
-    
-       return $fila;
-
-    }
+   
 
 
 }

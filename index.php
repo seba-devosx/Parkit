@@ -1,5 +1,5 @@
 <?php
-include './view/cliente/Portada.html';
+include './view/Portada.html';
 
 
 ?>

@@ -7,6 +7,7 @@
     if ($_SESSION["usuario"]["privilegio"] == 1) {
       header("location:Administrador.php");
     }
+  
   }
   else{
     header("location:Portada.php");
@@ -14,7 +15,7 @@
   
   ?>
 <head>
-<title>Boleta-QR</title>
+<title>Mis-Reservas</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -34,26 +35,21 @@
 	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
   <link rel="manifest" href="../cliente/manifest.json">
 
-<!--efectos de alertas-notificaciones-->
-  <script src="../../assets/js/alertas_push.js"></script>
-  <link rel="stylesheet" type="text/css" href="./assets/css/overhang.min.css" />
-<script type="text/javascript" src="./assets/js/overhang.min.js"></script>
+<!--efecto de notificaciones-->
+<script src="./../assets/js/Alertas_reporte.js"></script>
+  <link rel="stylesheet" type="text/css" href="./../assets/css/overhang.min.css" />
+<script type="text/javascript" src="./../assets/js/overhang.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+ <!--separar el estilo del html--->
 <!--notificaciones push-->
   <script src="../assets/plugins/push.js-master/push.js"></script>
   <script src="../assets/plugins/push.js-master/serviceWorker.js"></script>
   
   <script>
-        Push.create("Tu Reserva Esta Lista!!",{
-            body: "Tu Reserva Esta Lista, Presenta El QR Al Llegar al Estacionamiento",
-            icon: '../assets/img/Logo.png',
-            timeout: 10000,
-            onClick: function () {
-                window.focus();
-                this.close();
-            }
-        });
+     $("#btnLimpiar").click(function(event) {
+	   $("#comments").reset();
+   });
+     
     
   
   </script>
@@ -207,7 +203,19 @@
     color:black;
 }
 
-  
+#drop{
+  background:#424245!important;
+  color-tex:black;
+}
+#btn1 {
+    padding: 10px 20px;
+    background-color: rgb(253, 253, 254);
+    color: black;
+    border-radius: 0;
+    transition: .2s;
+  }
+
+
   </style>
 
 </head>
@@ -221,15 +229,24 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage"><div></div><img src="../assets/img/Logo.png" width="70" height="70"></a>
+      <a class="navbar-brand" href="http://localhost/Parkit/view/IndexLogeado.php"><div></div><img src="../assets/img/Logo.png" width="70" height="70"></a>
       <h5 class="navbar-brand"navbar-brand">Parkit</h5>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-      
-      <li><a class="text-uppercase"><?php echo $_SESSION["usuario"]["usuario"]?></a></li>
-        <li><a href="../view/cliente/IndexLogeado.php">REALIZAR RESERVA</a></li>
-        <li><a href="#tour">TICKET DE RESERVA</a></li>
+      <li class="nav-item dropdown" >
+        <a class="nav-link dropdown-toggle text-uppercase" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <?php echo $_SESSION["usuario"]["usuario"]?>
+        </a>
+        <div class="dropdown-menu" id="drop"aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="./Modifcar-perfil.php">Mi Perfil </a> <br>
+          <a class="dropdown-item" href="./Mis_Pagos.php">Mis Pagos</a>
+
+        </div>
+      </li>
+
+        <li><a href="./IndexLogeado.php">REALIZAR RESERVA</a></li>
+        <li><a href="./Mis_Reserva.php">MIS RESERVAS</a></li>
         <li><a href="#contact">CONTACTO</a></li>
         <li id="cerrar"><a href="../validations/CerrarSession.php">CERRAR SESION</a></li>
       </ul>
@@ -244,116 +261,78 @@
 <div id="band" class="container text-center">
 <i id="user"class='fas fa-user-circle' style='font-size:60px;color:black'></i>
   <h3 class="text-uppercase">Bienvenido:<?php echo $_SESSION["usuario"]["nombre"]?>-<?php echo $_SESSION["usuario"]["apellido"]?>||<?php echo $_SESSION["usuario"]["privilegio"] == 1 ? 'admin' : 'cliente';?></h3>
-  <p class="text-justify text text-capitalize center-block"><h1 class="text-capitalize">En hora Buena!!</h1>Tu reserva ya fue registrada,
-    Si no conoces que paso realizar porfavor cosulta las indicaciones en el apartado de las intrucciones .</p>
-  <p><em>No Esperes Mas!!!</em></p>
   <p></p>
   <br>
   <div class="row">
       <div class="col-lg-12 text-center ">
-          <div id="Registro" class="btn" data-toggle="collapse" data-target="#Registro-collapse">Registro</div>
-          <div class="w3-container">
-              <div id="Registro-collapse" class="collapse w3-panel w3-card">
-                <p class="text-capitalize">complete el formulario para ser parte de este gran servicio de estacionamientos</p>
-                 <!--aca se inicia el slide de intrucciones para explicar el funcionamiento del sistem de reserva-->
-                 <p class="text-uppercase">instrucciones de uso:</p>
-                
-                </div>
-            </div>
+         
+          
           </div>
           <br>
-         
-
-   
     </div>
-    <br>
-    <br>
-    
+
 </div>
-  
+
+
+
 
 <!-- Container (TOUR Section) -->
 <div id="tour" class="bg-1">
   <div class="container">
-    <h3 class="text-center">TICKET DE ESTACIONAMIENTO</h3>
-    <p class="text-center">El siguiente tickect es tu pase para poder habilitar tu reserva en el estacionamiento
-        <br>Vamos quema tu codigo y vive la experiencia parkit!!</p>
+    <h3 class="text-center text-uppercase"> RESERVAS RELIZADAS POR TI <?php echo $_SESSION["usuario"]["nombre"]?> </h3>
+   
+  <table align="center" cellspacing="2" cellpadding="2" border="1" bgcolor=dddddd>
+		<tr>
+      <td>ID Reserva</td>
+			<td>Rut</td>
+			<td>Usuario</td>
+			<td>Patente</td>
+      <td>Numero</td>
+			<td>Fecha</td>
+			<td>Hora</td>	
+      <td>Estacionamiento</td>
+		</tr>
 
- <div class="row text-center">
-      <div class="col-sm-4 col-md-offset-4">
-        <div class="thumbnail">
-        <br>
-        <i class="glyphicon glyphicon-qrcode"></i>
-          <p><strong>Codigo QR que Representa Tu Entrada</strong></p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Codigo QR estacionamiento</button>
-        </div>
-      </div>
+    <?php 
+    $rut = $_SESSION["usuario"]["rut"];
+		$conexion=mysqli_connect('localhost','root','','Parkit2');
+		$sql="SELECT `hora_in`, `rut`, `usuario`, `fecha`, `id_reserva`, `patente`, `numero`, `estacionamiento` FROM `Reserva` WHERE `rut` ='".$rut."'";
+    $result=mysqli_query($conexion,$sql);
+    if (mysqli_num_rows($result)==0) {
+      echo'<h1 align="center">No tienes Reserva Realizadas</h1>';
+    }
+
+		while($mostrar=mysqli_fetch_array($result)){
       
-      
-    </div>
-  </div>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+		 ?>
+
+		<tr>
+		
+     
+			<td><?php echo $mostrar['id_reserva'] ?></td>
+			<td><?php echo $mostrar['rut'] ?></td>
+			<td><?php echo $mostrar['usuario'] ?></td>
+			<td><?php echo $mostrar['patente'] ?></td>
+      <td><?php echo $mostrar['numero'] ?></td>
+      <td><?php echo $mostrar['fecha'] ?></td>
+      <td><?php echo $mostrar['hora_in'] ?></td>
+      <td><?php echo $mostrar['estacionamiento'] ?></td>
+      <td>
+      <a  id="boton" class="btn btn-warning btn-sm"  onclick="javascript:return confirm('¿Estas seguro que deseas eliminar tu reserva actual?');" href="Eliminar_reserva.php?rut=<?php echo $_SESSION["usuario"]["rut"];?>">Eliminar</a>
+      </td>
+    </tr>
     
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4><span class="glyphicon glyphicon-lock"></span> CodigoQR</h4>
-        </div>
-        <div class="modal-body">
-          <div class="text-center">
-          <h2>Debe Mostrar Este Codigo Al Entrar</h2>
-          <?php
+  <?php 
+  
+	}
+	 ?>
+	</table>
+      
+    
+       
 
-                  include('./../assets/lib/phpqrcode/qrlib.php');
-                
-
-                  // how to save PNG codes to server
-                  
-                  $tempDir = './../temp/';
-                  
-                  $codeContents = echo $_SESSION["usuario"]["apellido"];
-                  
-                  // we need to generate filename somehow, 
-                  // with md5 or with database ID used to obtains $codeContents...
-                  $fileName = '005_file_'.md5($codeContents).'.png';
-                  
-                  $pngAbsoluteFilePath = $tempDir.$fileName;
-                  $urlRelativeFilePath = $tempDir.$fileName;
-                  
-                  // generating
-                  if (!file_exists($pngAbsoluteFilePath)) {
-                      QRcode::png($codeContents, $pngAbsoluteFilePath);
-                      //echo 'File generated!';
-                      echo '<hr />';
-                  } else {
-                      //echo 'File already generated! We can use this cached file to speed up site on common codes!';
-                      //echo '<hr />';
-                  }
-                  
-                  // echo 'Server PNG File: '.$pngAbsoluteFilePath;
-                 // echo '<hr />';
-                  
-                  // displaying
-                  echo '<img src="'.$urlRelativeFilePath.'" />';
-                  
-
-            ?>
-          
-          
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
-            <span class="glyphicon glyphicon-remove"></span> Cancelar
-          </button>
-          <p><a href="#">Necesitas Ayuda ?</a></p>
-        </div>
-      </div>
-    </div>
+ 
+  </div>
   </div>
 </div>
 
@@ -370,21 +349,26 @@
       <p><span class="glyphicon glyphicon-envelope"></span>Email: SoportParkit@Parkitchile.cl</p>
     </div>
     <div class="col-md-8">
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+    <form id="Registro-form" action="../validations/Reporte_code_user.php" method="POST">
+        <div class="row">
+          <div class="col-sm-4 form-group">
+            <input class="form-control" id="name" name="txtNombre"  value="<?php echo $_SESSION["usuario"]["nombre"]?>" type="text"  readonly>
+          </div>
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="email" name="txtCorreo"  value="<?php echo $_SESSION["usuario"]["correo"]?>" type="email"  readonly>
+          </div>
+          <div class="col-sm-4 form-group">
+            <input class="form-control" id="email" name="txtRut" value="<?php echo $_SESSION["usuario"]["rut"]?>" type="text" readonly>
+          </div>
         </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        <textarea class="form-control" id="comments" name="txtReporte" placeholder="Comenta tus problemas con el sistema" rows="5" required></textarea>
+        <br>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <button  class="btn pull-right" type="submit" >Enviar</button>
+          </div>
         </div>
-      </div>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-      <br>
-      <div class="row">
-        <div class="col-md-12 form-group">
-          <button class="btn pull-right" type="submit">Enviar</button>
-        </div>
-      </div>
+        </form>
     </div>
   </div>
   <br>
@@ -455,3 +439,4 @@ $(document).ready(function(){
 
 </body>
 </html>
+   

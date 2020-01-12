@@ -1,9 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
+  <?php
+  session_start();
+  if (isset($_SESSION["usuario"])) {
+    if ($_SESSION["usuario"]["privilegio"] == 1) {
+      header("location:Administrador.php");
+    }
    
+  }
+  else{
+    header("location:Portada.php");
+  }
+  
+  ?>
 <head>
-    
-  <title>Parkit</title>
+<title>Boleta-QR</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -18,19 +30,34 @@
 	<meta name="HandheldFriendly" content="true">
 	<meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon" />
 	<link rel="apple-touch-icon" href="../../assets/favicon/apple-icon-144x144.png">
 	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
-  <link rel="manifest" href="./manifest.json">
-  <link  href="./sw.js">
-<!--efacto de notificaciones-->
-  <script src="./assets/js/Alertas-login.js"></script>
-  <script src="./assets/js/Alertas-registro.js"></script>
-  <link rel="stylesheet" type="text/css" href="./assets/css/overhang.min.css" />
-<script type="text/javascript" src="./assets/js/overhang.min.js"></script>
+  <link rel="manifest" href="../cliente/manifest.json">
+<!--efecto de notificaciones-->
+<script src="./../assets/js/Alertas_reporte.js"></script>
+  <link rel="stylesheet" type="text/css" href="./../assets/css/overhang.min.css" />
+<script type="text/javascript" src="./../assets/js/overhang.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
  <!--separar el estilo del html--->
 
+<!--notificaciones push-->
+  <script src="../assets/plugins/push.js-master/push.js"></script>
+  <script src="../assets/plugins/push.js-master/serviceWorker.js"></script>
+  
+  <script>
+        Push.create("Tu Reserva Esta Lista!!",{
+            body: "Tu Reserva Esta Lista, Presenta El QR Al Llegar al Estacionamiento",
+            icon: '../assets/img/Logo.png',
+            timeout: 10000,
+            onClick: function () {
+                window.focus();
+                this.close();
+            }
+        });
+    
+  
+  </script>
   <style>
   body {
     font: 400 15px/1.8 Lato, sans-serif;
@@ -173,52 +200,22 @@
   textarea {
     resize: none;
   }
-  #Nombre_usuario{
-    border-right: none;
-    border-left: none;
-    border-top: none;
-  }
-#Apellido_usuario{
-  border-right: none;
-    border-left: none;
-    border-top: none;
+#user{
+  margin-top:10px;
 }
-#Rut_usuario{
-border-right: none;
-    border-left: none;
-    border-top: none;
+.glyphicon.glyphicon-qrcode{
+    font-size: 75px;
+    color:black;
 }
-#Correo_usuario{
-border-right: none;
-    border-left: none;
-    border-top: none;
-}
-#Edad_usuario{
-border-right: none;
-    border-left: none;
-    border-top: none;
-} 
-#Pass_usuario{
-border-right: none;
-    border-left: none;
-    border-top: none;
-} 
-#Patente{
-border-right: none;
-    border-left: none;
-    border-top: none;
-} 
-#Numero{
-border-right: none;
-    border-left: none;
-    border-top: none;
-} 
 
-/*el focus sirva para quitar la sombra al seleccionar un campo*/
-  :focus {
-outline: 0;
+#drop{
+  background:#424245!important;
+  color-tex:black;
 }
+
+  
   </style>
+
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
@@ -230,183 +227,189 @@ outline: 0;
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage"><div></div><img src="./assets/img/Logo.png" width="70" height="70"></a>
+      <a class="navbar-brand" href="#myPage"><div></div><img src="../assets/img/Logo.png" width="70" height="70"></a>
       <h5 class="navbar-brand"navbar-brand">Parkit</h5>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#myPage">INICIO</a></li>
-        <li><a href="#band">REGISTRO</a></li>
-        <li><a href="#tour">NOSOTROS</a></li>
-        <li><a href="#contact">CONTACTO</a></li>
+      
+      <li><a class="text-uppercase"><?php echo $_SESSION["usuario"]["usuario"]?></a></li>
+        <li><a href="../view/cliente/IndexLogeado.php">REALIZAR RESERVA</a></li>
+        <li><a href="./Mis_Reserva.php">MIS RESERVAS</a></li>
+        <li><a href="#contact">REPORTE DE INCIDENTES</a></li>
+        <li id="cerrar"><a href="../validations/CerrarSession.php">CERRAR SESION</a></li>
       </ul>
+      <br>
       
     </div>
   </div>
 </nav>
 
-<div id="myCarousel" class="carousel slide"data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="assets/img/estacionamiento1.jpg" alt="New York" width="1200" height="700">
-        <div class="carousel-caption">
-          <h3>Bienvenidos</h3>
-          <p>A Parkit reserva tu estacionamiento!</p>
-        </div>      
-      </div>
-
-      <div class="item">
-        <img src="assets/img/estacinamiento2.jpg" alt="Chicago" width="1200" height="700">
-        <div class="carousel-caption">
-          <h3>Plazas Automatizadas</h3>
-          <p>A lo largo de todo Chile</p>
-        </div>      
-      </div>
-    
-      <div class="item">
-        <img src="assets/img/estacionamiento5.jpg" alt="Los Angeles" width="1200" height="700">
-        <div class="carousel-caption">
-          <h3>Usa Parkit</h3>
-          <p>Registrate Ahora!</p>
-        </div>      
-      </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-</div>
-
-<!-- Container (Registro Section) -->
+<!-- Container (Usuario Section) -->
 <div id="band" class="container text-center">
-  <h3>REGISTRATE AHORA!</h3>
-  <h3>O</h3>
-  <h3>INGRESA YA CON TU CUENTA!</h3>
-  <p><em>No Esperes Mas</em></p>
+<i id="user"class='fas fa-user-circle' style='font-size:60px;color:black'></i>
+  <h3 class="text-uppercase">Bienvenido:<?php echo $_SESSION["usuario"]["nombre"]?>-<?php echo $_SESSION["usuario"]["apellido"]?>||<?php echo $_SESSION["usuario"]["privilegio"] == 1 ? 'admin' : 'cliente';?></h3>
+  <p class="text-justify text text-capitalize center-block"><h1 class="text-capitalize">En hora Buena!!</h1>Tu reserva ya fue registrada,
+    Si no conoces que paso realizar porfavor cosulta las indicaciones en el apartado de las intrucciones .</p>
+  <p><em>No Esperes Mas!!!</em></p>
   <p></p>
   <br>
   <div class="row">
-      <div class="col-lg-6 ">
+      <div class="col-lg-12 text-center ">
           <div id="Registro" class="btn" data-toggle="collapse" data-target="#Registro-collapse">Registro</div>
           <div class="w3-container">
               <div id="Registro-collapse" class="collapse w3-panel w3-card">
                 <p class="text-capitalize">complete el formulario para ser parte de este gran servicio de estacionamientos</p>
-                  <form id="Registro-form" action="./validations/Registro_code.php" method="post">
-                    <p class="text-justify">NOMBRE:</p><div class="text-justify"><input type="text" name="txtNombre" id="Nombre_usuario" placeholder="Ingrese su Nombre" required></div>
-                    <p class="text-justify">APELLIDO:</p><div class="text-justify"><input type="text" name="txtApellido" id="Apellido_usuario" placeholder="Ingrese su Apellido"required></div>
-                    <p class="text-justify">RUT:(sin puntos solo guion)</p><div class="text-justify"><input type="text" name="txtRut" id="Rut_usuario" placeholder="Ingrese su Rut"required></div>
-                    <p class="text-justify">CORREO:</p><div class="text-justify"><input type="text" name="txtCorreo" id="Correo_usuario" size="30"placeholder="Ingrese su Correo@.com"required></div><br>
-                    <p class="text-justify">NICKNAME:</p><div class="text-justify"><input type="text" name="txtUsuario" id="Correo_usuario" size="30"placeholder="Ingrese su nickname"required></div><br>
-                    <p class="text-justify">NUMERO TELEFONICO:</p><div class="text-justify"><input type="text" name="txtNumero" id="Numero" size="30"placeholder="Ingrese su numero"required></div><br>
-                    <p class="text-justify">PATENTE DE TU VEHICULO:</p><div class="text-justify"><input type="text" name="txtPatente" id="Patente" size="30"placeholder="Ingrese su patente"required></div><br>
-                    <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="txtPass" id="Pass_usuario" placeholder="Ingrese su contraseña"required></div><br>
-                    <p class="text-justify"></p><div class="text-justify text-capitalize" ><input type="checkbox" name="Termino" id="Termino_usuario"required>Usted acepta los terminos y condicion de este servicio</div>
-                    
-                    <button class="btn btn-block" type="submit">Registar</button>
-                  </form>
-                  
+                 <!--aca se inicia el slide de intrucciones para explicar el funcionamiento del sistem de reserva-->
+                 <p class="text-uppercase">instrucciones de uso:</p>
+                
                 </div>
             </div>
           </div>
           <br>
-          
-        
-      <div class="col-lg-6 ">
-          <div class="btn btn-dark" data-toggle="collapse" data-target="#Login-collapse">Login</div>
-          <div class="w3-container">
-              <div  id="Login-collapse" class="collapse w3-panel w3-card" >
-                  <p class="text-capitalize">Ingresa Un estacionamieto te estara esperando!!</p>
-                  <form id="Login-form" action="./validations/Validacion_code.php" method="POST">
-                    <p class="text-justify">Username:</p><div class="text-justify"><input type="text" name="txtUsuario" id="Nombre_usuario" size="20"placeholder="Ingrese su Username"  required autofocus></div>
-                    <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="txtPass" id="Nombre_usuario" size="20" placeholder="Ingrese su Contraseña"  required autofocus></div><br>
-                    
-                    <button class="btn btn-block" type="submit">Ingresar</button>
-                  </form>
-                </div>
-            </div>
-          </div>
+         
+
+   
     </div>
     <br>
     <br>
+    
 </div>
   
 
 <!-- Container (TOUR Section) -->
 <div id="tour" class="bg-1">
   <div class="container">
-    <h3 class="text-center">NUESTROS ESTACIONAMIENTOS</h3>
-    <p class="text-center">Plazas Automatizas a lo largo De Chile<br></p>
-   
-    <div class="row text-center">
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="assets/img/ejemplo1.jpg"  width="400" height="300">
-          <p><strong>Aeropuerto</strong></p>
+    <h3 class="text-center">TICKET DE ESTACIONAMIENTO</h3>
+    <p class="text-center">El siguiente tickect es tu pase para poder habilitar tu reserva en el estacionamiento
+        <br>Vamos quema tu codigo y vive la experiencia parkit!!</p>
 
+ <div class="row text-center">
+      <div class="col-sm-4 col-md-offset-4">
+        <div class="thumbnail">
+        <br>
+        <i class="glyphicon glyphicon-qrcode"></i>
+          <p><strong>Codigo QR que Representa Tu Entrada</strong></p>
+          <button class="btn" data-toggle="modal" data-target="#myModal">Codigo QR estacionamiento</button>
         </div>
       </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="assets/img/ejemplo4.jpg"  width="400" height="300">
-          <p><strong>Providencia</strong></p>
+      
+      
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> CodigoQR</h4>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+          <h2>Debe Mostrar Este Codigo Al Entrar</h2>
+          
+            <?php
+              $cnx = new PDO('mysql:host=localhost;dbname=Parkit2;charset=utf8', 'root', '');
+              $cnx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+              $stmt = $cnx->prepare("SELECT `hora_in`, `rut`, `usuario`, `fecha`, `id_reserva`, `patente`, `numero`, `estacionamiento` FROM `Reserva` WHERE `rut` ='".$_SESSION["usuario"]["rut"]."'"); 
+              $stmt->execute();
+              $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+              while ($row = $stmt->fetch()) {
+                $row['estacionamiento'];
+                $hola =$row['estacionamiento'];
+                
+              }
+            
+
+                include('./../assets/lib/phpqrcode/qrlib.php');
+
+                
+                // how to save PNG codes to server
+
+                $tempDir = 'qrcode/';
+
+                $codeContents =  $hola;
+
+                // we need to generate filename somehow, 
+                // with md5 or with database ID used to obtains $codeContents...
+                $fileName = '005_file_'.md5($codeContents).'.png';
+
+
+                $pngAbsoluteFilePath = $tempDir.$fileName;
+                $urlRelativeFilePath = $tempDir.$fileName;
+
+
+                // generating
+                if (!file_exists($pngAbsoluteFilePath)) {
+                    QRcode::png($codeContents, $pngAbsoluteFilePath);
+                    //echo 'File generated!';
+                    //echo '<hr />';
+                } else {
+                    //echo 'File already generated! We can use this cached file to speed up site on common codes!';
+                   // echo '<hr />';
+                }
+
+               // echo 'Server PNG File: '.$pngAbsoluteFilePath;
+                echo '<hr />';
+
+                // displaying
+                echo '<img src="'.$urlRelativeFilePath.'" />';
+              ?>
+          
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span> Cancelar
+       
+          </button>
+          <p><a href="#">Necesitas Ayuda ?</a></p>
          
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="assets/img/ejemplo2.jpg"  width="400" height="300">
-          <p><strong>San Francisco</strong></p>
         </div>
       </div>
     </div>
   </div>
-
-</div>
-</div>
 </div>
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container">
-  <h3 class="text-center">Contacto</h3>
+  <h3 class="text-center">Reporte de incidentes</h3>
   <p class="text-center"><em>Soporte las 24hrs!</em></p>
 
   <div class="row">
     <div class="col-md-4">
-      <p>Escribenos!</p>
+      <p>Escribe tu problema para poder ayudarte en alguna solucion</p>
       <p><span class="glyphicon glyphicon-map-marker"></span>Santiago, Chile</p>
       <p><span class="glyphicon glyphicon-phone"></span>Telefono: +00 1515151515</p>
       <p><span class="glyphicon glyphicon-envelope"></span>Email: SoportParkit@Parkitchile.cl</p>
     </div>
     <div class="col-md-8">
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        <form id="Registro-form" action="../validations/Reporte_code_user.php" method="POST">
+        <div class="row">
+          <div class="col-sm-4 form-group">
+            <input class="form-control" id="name" name="txtNombre"  value="<?php echo $_SESSION["usuario"]["nombre"]?>" type="text"  readonly>
+          </div>
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="email" name="txtCorreo"  value="<?php echo $_SESSION["usuario"]["correo"]?>" type="email"  readonly>
+          </div>
+          <div class="col-sm-4 form-group">
+            <input class="form-control" id="email" name="txtRut" value="<?php echo $_SESSION["usuario"]["rut"]?>" type="text" readonly>
+          </div>
         </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        <textarea class="form-control" id="comments" name="txtReporte" placeholder="Comenta tus problemas con el sistema" rows="5" required></textarea>
+        <br>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <button class="btn pull-right" type="submit">Enviar</button>
+          </div>
         </div>
-      </div>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
-      <br>
-      <div class="row">
-        <div class="col-md-12 form-group">
-          <button class="btn pull-right" type="submit">Enviar</button>
-        </div>
-      </div>
+        </form>
+     
     </div>
   </div>
   <br>
@@ -477,3 +480,4 @@ $(document).ready(function(){
 
 </body>
 </html>
+   

@@ -288,7 +288,7 @@ border-right: none;
     <div class="w3-container">
               <div class="w3-panel w3-card">
                 <p class="text-capitalize">Panel de Control de admiistrador</p>
-                <p>hacer botones para que telleven a disintos apartados que seren reservas relizadas, usuarios registrados y administrador de piso </p>
+                <p>Solo se deben crear usuarios cuando se solicita asistencia telefonica </p>
                
                 
               
@@ -317,6 +317,7 @@ border-right: none;
                                 <td>PRIVILEGIO</td>
                                 <td>PATENTE</td>
                                 <td>Numero telefonico</td>
+                                <td><span class="badge badge-danger">Acciones </span></td>
                                 
                              </tr>
                             </thead>
@@ -324,35 +325,16 @@ border-right: none;
                                 <?php foreach($filas as $usuarios){ ?>
                                 <tr>
                                 <td><?php echo $usuarios["nombre"]?></td>
-                                            <td><?php echo $usuarios["apellido"]?></td>
-                                            <td><?php echo $usuarios["rut"]?></td>
-                                            <td><?php echo $usuarios["correo"]?></td>
-                                            <td><?php echo $usuarios["usuario"]?></td>
-                                            <td><?php echo getPrivilegio($usuarios["privilegio"])?></td>
-                                            <td><?php echo $usuarios["patente"]?></td>
-                                            <td><?php echo $usuarios["numero"]?></td>
-                                            <td>
-                                                                        
-                                              
-                                            <a  id="boton" class="btn btn-warning btn-sm"  onclick="javascript:return confirm('¿Seguro que quieres dar de baja esta cuenta?');" href="ModificarAdmin.php?rut=<?php echo $usuarios["rut"]?>">Modificar</a>
-                                                <form >
-                                                <a href="ModificarAdmin.php?rut=<?php echo $usuarios["rut"]?>">
-                                                  <button type="submit" class="btn-warning btn-default pull-left"  onclick="javascript:return confirm('¿Seguro que quieres editar esta cuenta?');" >
-                                                    <span class="glyphicon glyphicon-user"></span> Modificar
-                                                  </button>
-                                                </form>
-                                                <br>
-                                                <br>
-
-                                                </form>
-                                                    <a href="../validations/Eliminar_code_user.php?rut=<?php echo $usuarios["rut"]?>">
-                                                    <button type="submit" class="btn-danger btn-default pull-left"  onclick="javascript:return confirm('¿Seguro que quieres editar esta cuenta?'); ">
-                                                      <span class="glyphicon glyphicon-remove"></span> Eliminar
-                                                    </button></a>
-                                                </form>
-
-                                                
-                                              </td>
+                                <td><?php echo $usuarios["apellido"]?></td>
+                                <td><?php echo $usuarios["rut"]?></td>
+                                <td><?php echo $usuarios["correo"]?></td>
+                                <td><?php echo $usuarios["usuario"]?></td>
+                                <td><?php echo getPrivilegio($usuarios["privilegio"])?></td>
+                                <td><?php echo $usuarios["patente"]?></td>
+                                <td><?php echo $usuarios["numero"]?></td>
+                                  <td>
+                                      <a  id="boton" class="btn btn-danger btn-sm"  onclick="javascript:return confirm('¿Seguro que quieres Eliminar este usuario?');" href="../validations/Eliminar_code_user.php?rut=<?php echo $usuarios["rut"]?>">Eliminar</a>   
+                                  </td>
 
                                 <?php } ?>
                                 </tr>

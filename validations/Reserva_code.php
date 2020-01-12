@@ -8,7 +8,7 @@ include '../controller/ReservaControlador.php';
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     if(isset($_POST["txtHora_in"]) && isset($_POST["txtFecha"]) && isset($_POST["txtRut"])&& isset($_POST["txtUsuario"])
-    && isset($_POST["txtNumero"])&& isset($_POST["txtPatente"])){
+    && isset($_POST["txtNumero"])&& isset($_POST["txtPatente"])&& isset($_POST["txtIdestaciona"])){
 
             $txtHora_in = $_POST["txtHora_in"];
             $txtFecha = $_POST["txtFecha"];
@@ -16,16 +16,30 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             $txtUsuario = $_POST["txtUsuario"];
             $txtNumero = $_POST["txtNumero"];
             $txtPatente = $_POST["txtPatente"];
+            $txtIdestaciona = $_POST["txtIdestaciona"];
+            
+     
+         
             
             
-        if(ReservaControlador::registro($txtHora_in,$txtRut,$txtFecha,$txtUsuario,$txtNumero,$txtPatente)){
-            sleep(10);
-            header("Location:http://localhost/parkit/validations/Boleta_QR.php");
+            
+        if(ReservaControlador::registro($txtHora_in,$txtRut,$txtFecha,$txtUsuario,$txtNumero,$txtPatente,$txtIdestaciona)){
+            if ( ReservaControlador::pago($txtRut,$txtNumero,$txtFecha,$txtHora_in)) {
+                if ( ReservaControlador::eliminar_estacionamiento($txtIdestaciona)) {
+                    sleep(6);
+                    header("Location:http://localhost/parkit/view/Boleta_QR.php");
+               
+                }
+           
+            }
+           
+            
+            
             
         }
         else{
-            echo "esto no funciona";      
-            echo"$txtRut,$txtHora_in,$txtFecha,$txtUsuario,$txtNumero,$txtPatente";
+            echo "esto no funciona"; 
+            echo"$txtHora_in,$txtRut,$txtFecha,$txtUsuario,$txtNumero,$txtPatente,$txtIdestaciona";
     
         }
    

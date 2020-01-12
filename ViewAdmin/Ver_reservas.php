@@ -234,10 +234,6 @@
     require_once '../controller/ReservaControlador.php';
 
     $filas = ReservaControlador::getReservas();
-
-  
-    
-
 ?>
 
 
@@ -250,20 +246,9 @@
     <div class="col-md-12">
     <div class="w3-container">
               <div class="w3-panel w3-card">
-                <p class="text-capitalize">Panel de Control de admiistrador</p>
-                <p>hacer botones para que telleven a disintos apartados que seren reservas relizadas, usuarios registrados y administrador de piso </p>
+                <p class="text-capitalize">Panel de Control de admistrador</p>
+                <p> Solo se deben eliminar las reservas cuando un usuario no llega a aparcar su vehiculo</p>
                  
-        
-
-                <form action="Crear_reserva_Admin.php">
-                <button type="submit" class="btn-primary btn-default pull-left"  role="button" data-toggle="modal" >
-                  <span class="glyphicon far fa-address-card"></span> Agregar reserva
-                </button>
-                </form>
-
-               
-                                
-
                 <br>
                 <br>
                 <div class="panel panel-default">
@@ -293,24 +278,10 @@
                                             <td><?php echo $reservas["numero"]?></td>
                                             <td><?php echo $reservas["patente"]?></td>
                                             <td>
-                                            <a  id="boton" class="btn btn-warning btn-sm" href="#MyModal2" role="button" data-toggle="modal" onclick="javascript:return confirm('¿Seguro que quieres dar de baja esta cuenta?');" href="rut=<?php echo $usuarios["rut"]?>">Modificar</a>
+                                           
                                             <a  id="boton" class="btn btn-danger btn-sm" onclick="javascript:return confirm('¿Seguro que quieres dar de baja esta cuenta?');" href="../validations/Eliminar_code_user.php?rut=<?php echo $usuarios["rut"]?>">eliminar</a>
                                                 
-                                                <form action="Crear_user_Admin.php?rut=<?php echo $reservas["rut"]?>">
-                                               
-                                               <button type="submit" class="btn-warning btn-default pull-left"  onclick="javascript:return confirm('¿Seguro que quieres editar esta cuenta?');" >
-                                                 <span class="glyphicon glyphicon-user"></span> Modificar
-                                               </button>
-                                             </form>
-                                             <br>
-                                             <br>
-
-                                             </form>
-                                                 <a href="../validations/Eliminar_code_user.php?rut=<?php echo $reservas["rut"]?>">
-                                                 <button type="submit" class="btn-danger btn-default pull-left"  onclick="javascript:return confirm('¿Seguro que quieres editar esta cuenta?'); ">
-                                                   <span class="glyphicon glyphicon-remove"></span> Eliminar
-                                                 </button></a>
-                                             </form>
+                                                
                                             
                                             
                                               </td>

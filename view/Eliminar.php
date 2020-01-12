@@ -3,16 +3,21 @@
 <html lang="en">
 <?php
   session_start();
-  if (isset($_SESSION["admin"])) {
-    if ($_SESSION["admin"]["privilegio"] == 168) {
+  if (isset($_SESSION["usuario"])) {
+    if ($_SESSION["usuario"]["privilegio"] == 2) {
       
+      
+    }
+    else{
+      header("location:http://localhost/parkit/");
     }
   }
   else{
-    header("location:http://localhost/parkit/fallo.html");
+    header("location:http://localhost/parkit/");
   }
   
   ?>
+  
 <head>
 <title>Parkit</title>
   <meta charset="utf-8">
@@ -257,15 +262,23 @@ border-right: none;
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage"><div></div><img src="./../assets/img/Logo.png" width="70" height="70"></a>
+      <a class="navbar-brand" href="http://localhost/Parkit/view/IndexLogeado.php"><div></div><img src="./../assets/img/Logo.png" width="70" height="70"></a>
       <h5 class="navbar-brand"navbar-brand">Parkit</h5>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-      
-      <li><a class="text-uppercase"><?php echo $_SESSION["admin"]["usuario"]?></a></li>
-        <li><a href="Administrador.php">VOLVER AL INCIO</a></li>
-        <li><a href="../validations/CerrarAdmin.php">CERRAR SESION</a></li>
+      <li class="nav-item dropdown" >
+        <a class="nav-link dropdown-toggle text-uppercase" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <?php echo $_SESSION["usuario"]["usuario"]?>
+        </a>
+        <div class="dropdown-menu" id="drop"aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="./Modifcar-perfil.php">Mi Perfil </a> <br>
+          <a class="dropdown-item" href="./Mis_Pagos.php">Mis Pagos</a>
+
+        </div>
+      </li>
+        <li><a href="http://localhost/Parkit/view/IndexLogeado.php">VOLVER AL INCIO</a></li>
+        <li><a href="../validations/CerrarSession.php">CERRAR SESION</a></li>
       </ul>
       <br>
       
@@ -278,7 +291,7 @@ border-right: none;
 <!-- Container (Usuario Section) -->
 <div id="band" class="container text-center">
 <i id="user"class='fas fa-user-circle' style='font-size:60px;color:black'></i>
-  <h3 class="text-uppercase">Bienvenido:<?php echo $_SESSION["admin"]["nombre"]?>-<?php echo $_SESSION["admin"]["apellido"]?>||<?php echo $_SESSION["admin"]["privilegio"] == 168 ? 'admin' : 'cliente';?></h3>
+  <h3 class="text-uppercase">Bienvenido:<?php echo $_SESSION["usuario"]["nombre"]?>-<?php echo $_SESSION["usuario"]["apellido"]?>||<?php echo $_SESSION["usuario"]["privilegio"] == 1 ? 'admin' : 'cliente';?></h3>
   <br>
   <div class="row">
     <div class="col-md-12">
@@ -286,41 +299,28 @@ border-right: none;
     <div id="Instrucciones" class="btn" data-toggle="collapse" data-target="#Instrucciones-collapse">Instrucciones</div>
           <div class="w3-container">
               <div id="Instrucciones-collapse" class="collapse w3-panel w3-card">
-                <p class="text-capitalize">Hola,<?php echo $_SESSION["admin"]["nombre"]?> si has llegado hasta aqui es por te han seleccionaod como administrador de este sistema</p>
+                <p class="text-capitalize">Hola,<?php echo $_SESSION["usuario"]["nombre"]?> si has llegado hasta aqui es por que tienes ya no quieres utilizar este servicio</p>
                  <!--aca se inicia el slide de intrucciones para explicar el funcionamiento del sistem de reserva-->
-                 <p class="text-uppercase">instrucciones de uso:</p>
-                 <ul>
-                 <li>A cotinuacion se detallaran el uso de como hacer uso del sistema que queberas administrar a continuacion</li>
-                 <li >Si quieres ver los usuarios registrador selecciona ver usuarios, adentro de ahi deberas leer las instrcciones antes de relizar cualquer accion dentro del sistema</li>
-                 <li >Si quieres ver las reservas registradas selecciona ver registradas, adentro de ahi deberas leer las instrcciones antes de relizar cualquer accion dentro del sistema</li>
-                 </ul>
-                
+                 <p class="text-uppercase">Al eliminar esta cuenta tus datos no se almacenaran y se eliminaran todo los registro que relizaste</p>
+                 
                 </div>
                 
                 
             </div>
               <div class="w3-panel w3-card">
-                <p class="text-capitalize text-center">Panel de control del administrador[<?php echo $usuario->getNombre()?>]</p>
-                <form id="Registro-form" action="../validations/ActualizarAdmin.php" method="post">
-                   <p class="text-center">NOMBRE:</p>
-                   <div class="text-center"><input type="text" name="txtNombre" id="Nombre_usuario" size="30"placeholder="Ingresa el nombre del cliente" value="<?php echo $usuario->getNombre()?>" required></div>
-                   <p class="text-center">APELLIDO:</p>
-                   <div class="text-center"><input type="text" name="txtApellido" id="Apellido_usuario" size="30"placeholder="Ingrese su Apellido" value="<?php echo $usuario->getApellido()?>" required></div>
-                   <p class="text-center">RUT:(sin puntos solo guion)</p>
-                   <div class="text-center"><input type="text" name="txtRut" id="Rut_usuario" size="30"placeholder="Ingrese su Rut" value="<?php echo $usuario->getRut()?>" required></div>
-                   <p class="text-center">CORREO:</p>
-                   <div class="text-center"><input type="text" name="txtCorreo" id="Correo_usuario" size="30"placeholder="Ingrese su Correo@.com" value="<?php echo $usuario->getCorreo()?>" required></div><br>
-                   <p class="text-center">NICKNAME:</p>
-                   <div class="text-center"><input type="text" name="txtUsuario" id="Correo_usuario" size="30"placeholder="Ingrese su nickname" value="<?php echo $usuario->getUsuario()?>" required></div><br>
-                   <p class="text-center">NUMERO TELEFONICO:</p>
-                   <div class="text-center"><input type="text" name="txtNumero" id="Numero" size="30"placeholder="Ingrese su numero" value="<?php echo $usuario->getNumero()?>" required></div><br>
-                   <p class="text-center">PATENTE DE TU VEHICULO:</p>
-                   <div class="text-center"><input type="text" name="txtPatente" id="Patente" size="30"placeholder="Ingrese su patente" value="<?php echo $usuario->getPatente()?>" required></div><br>
-                   <p class="text-center">CONSTRASEÑA:</p>
-                   <div class="text-center"><input type="password" name="txtPass" id="Pass_usuario" size="30"placeholder="Ingrese su contraseña"required></div><br>
-                                
-                      <button class="btn btn-block" type="submit">Registar</button>
-                  </form>
+
+                
+                  <br>
+                  <p class="text-uppercase">Al eliminar esta cuenta tus datos no se almacenaran y se eliminaran todo los registro que relizaste</p>
+
+                    <?php
+
+                        $usuarios["rut"]=$_SESSION["usuario"]["rut"];
+                        print  $usuarios["rut"]?>
+                    
+                  <a  id="boton" class="btn btn-danger btn-sm"  onclick="javascript:return confirm('¿Seguro que quieres Eliminar este usuario?');" href="../validations/EliminarCuenta.php?rut=<?php echo $usuarios["rut"]?>">Eliminar</a>   
+                      
+              
                                 
                 
                 

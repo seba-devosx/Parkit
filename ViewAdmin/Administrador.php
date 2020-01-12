@@ -237,15 +237,12 @@
     <div id="Instrucciones" class="btn" data-toggle="collapse" data-target="#Instrucciones-collapse">Instrucciones</div>
           <div class="w3-container">
               <div id="Instrucciones-collapse" class="collapse w3-panel w3-card">
-                <p class="text-capitalize">Hola,<?php echo $_SESSION["admin"]["nombre"]?> si has llegado hasta aqui es por te han seleccionaod como administrador de este sistema</p>
+                <p class="text-capitalize">Hola,<?php echo $_SESSION["admin"]["nombre"]?> si has llegado hasta aqui es por te han seleccionado como administrador de este sistema</p>
                  <!--aca se inicia el slide de intrucciones para explicar el funcionamiento del sistem de reserva-->
                  <p class="text-uppercase">instrucciones de uso:</p>
-                 <ul>
-                 <li>A cotinuacion se detallaran el uso de como hacer uso del sistema que queberas administrar a continuacion</li>
-                 <li >Si quieres ver los usuarios registrador selecciona ver usuarios, adentro de ahi deberas leer las instrcciones antes de relizar cualquer accion dentro del sistema</li>
-                 <li >Si quieres ver las reservas registradas selecciona ver registradas, adentro de ahi deberas leer las instrcciones antes de relizar cualquer accion dentro del sistema</li>
-                 </ul>
-                
+                 <p class="text-uppercase">1.-El presente sistema esta pensado para poder visualizar y poder realizar ciertas acciones</p>
+                 <p class="text-uppercase">2.-en el apartado de los usuario podras generar usuario simpre que sea por medio de asistencia telefonica</p>
+                 <p class="text-uppercase">2.-toda eliminicacion tanto de usuarios y reservas debera ser notificada por via telefonica</p>
                 </div>
                 
             </div>
