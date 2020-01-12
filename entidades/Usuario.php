@@ -9,6 +9,7 @@ class Usuario{
 	private $privilegio;
 	private $numero;
 	private $patente;
+	private $reporte;
 
 	public function getNombre(){
 		return $this->nombre;
@@ -79,6 +80,14 @@ class Usuario{
 	public function setPatente($patente){
 		$this->patente = $patente;
 	}
+
+	public function getReporte(){
+		return $this->reporte;
+	}
+	public function setReporte($reporte){
+		$this->reporte = $reporte;
+	}
+
 
 
 

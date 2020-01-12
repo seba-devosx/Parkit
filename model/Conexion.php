@@ -6,8 +6,8 @@
 class Conexion{
 Public static function conectar(){
     try{
-        $cn= new PDO('mysql:host=localhost;dbname=parkit;charset=utf8', 'root', '');
-        /*$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);*/
+        $cn= new PDO('mysql:host=localhost;dbname=Parkit2;charset=utf8', 'root', '');
+        /*$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, 1);*/
         
         return $cn;
        

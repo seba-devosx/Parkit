@@ -42,17 +42,19 @@ class UsuarioControlador{
 
         return UsuarioDao::getUsuarios();
     }
+   
+
+
 
      
-    //esta funcion sirve para dar debaja las cuentas de usuario del lado del administrador
-    public function eliminarUsuario($rut){
-      
+   
 
-        return UsuarioDao::eliminarUsuario($rut);
-    }
+
+
+    //Aqui hacia abajo comienzas los controladaodres que se dedican al paso de datos entre las vista del administrador y el modelo
 
     //esta funcion controla la actualizacion de datos desde el administrador 
-    public static function actualizarUsuario($nombre,$apellido,$rut,$correo,$pass,$usuario,$privilegio){
+    public static function actualizarUsuario($nombre,$apellido,$rut,$correo,$pass,$usuario,$patente,$numero){
         $obj_usuario = new Usuario();
         $obj_usuario->setNombre($nombre);
         $obj_usuario->setApellido($apellido);
@@ -60,9 +62,9 @@ class UsuarioControlador{
         $obj_usuario->setCorreo($correo);
         $obj_usuario->setPass($pass);
         $obj_usuario->setUsuario($usuario);
-        $obj_usuario->setPrivilegio($privilegio);
-
-        return UsuarioDao::registro($obj_usuario);
+        $obj_usuario->setPatente($patente);
+        $obj_usuario->setNumero($numero);
+        return UsuarioDao::actualizarUsuario($obj_usuario);
     }
     //esta funcion controla el ingreso de datos desde el lado del administrao
     public static function Registrar_usuario_Admin($nombre,$apellido,$rut,$correo,$pass,$usuario,$privilegio,$numero,$patente){
@@ -81,17 +83,18 @@ class UsuarioControlador{
     }
    
 
-    //funcion de 
+    //funcion permite modidificar usuario por el rut
     public function getUsuarioporrut($rut){
 
         return UsuarioDao::getUsuarioporrut($rut);
     }
+     //esta funcion sirve para dar debaja las cuentas de usuario del lado del administrador
+     public function eliminarUsuario($rut){
+      
 
-    public function getInfo(){
-
-        return UsuarioDao::getInfo();
+        return UsuarioDao::eliminarUsuario($rut);
     }
-
+   
 
 }
 

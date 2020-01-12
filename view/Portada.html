@@ -1,24 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <?php
-  session_start();
-  if (isset($_SESSION["usuario"])) {
-    if ($_SESSION["usuario"]["privilegio"] == 2) {
-      
-    }
-    else{
-      header("location:http://localhost/parkit/");
-    }
-  }
-  else{
-    header("location:http://localhost/parkit/");
-  }
-  
-  ?>
-  
+   
 <head>
-<title>Perfil-usuario</title>
+    
+  <title>Parkit</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -33,14 +18,24 @@
 	<meta name="HandheldFriendly" content="true">
 	<meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon" />
 	<link rel="apple-touch-icon" href="../../assets/favicon/apple-icon-144x144.png">
 	<link rel="apple-touch-startup-image" href="../../assets/favicon/apple-icon-144x144.png">
-  <link rel="manifest" href="../cliente/manifest.json">
+  <link rel="manifest" href="./manifest.json">
+  <link  href="./sw.js">
+<!--efacto de notificaciones-->
+  <script src="./assets/js/Alertas-login.js"></script>
+  <script src="./assets/js/Alertas-registro.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assets/css/overhang.min.css" />
+<script type="text/javascript" src="./assets/js/overhang.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+ <!--separar el estilo del html--->
+ <script>
+   $("#btnLimpiar").click(function(event) {
+	   $("#Registro-form")[0].reset();
+   });
+ </script>
 
-
-</script>
- 
   <style>
   body {
     font: 400 15px/1.8 Lato, sans-serif;
@@ -183,16 +178,52 @@
   textarea {
     resize: none;
   }
-#user{
-  margin-top:10px;
+  #Nombre_usuario{
+    border-right: none;
+    border-left: none;
+    border-top: none;
+  }
+#Apellido_usuario{
+  border-right: none;
+    border-left: none;
+    border-top: none;
 }
-#oscurecer {
-  -webkit-filter: grayscale(90%);
-    filter: grayscale(90%);
+#Rut_usuario{
+border-right: none;
+    border-left: none;
+    border-top: none;
 }
-  
-  </style>
+#Correo_usuario{
+border-right: none;
+    border-left: none;
+    border-top: none;
+}
+#Edad_usuario{
+border-right: none;
+    border-left: none;
+    border-top: none;
+} 
+#Pass_usuario{
+border-right: none;
+    border-left: none;
+    border-top: none;
+} 
+#Patente{
+border-right: none;
+    border-left: none;
+    border-top: none;
+} 
+#Numero{
+border-right: none;
+    border-left: none;
+    border-top: none;
+} 
 
+/*el focus sirva para quitar la sombra al seleccionar un campo*/
+  :focus {
+outline: 0;
+}
+  </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
@@ -204,150 +235,153 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage"><div></div><img src="../../assets/img/Logo.png" width="70" height="70"></a>
+      <a class="navbar-brand" href="#myPage"><div></div><img src="./assets/img/Logo.png" width="70" height="70"></a>
       <h5 class="navbar-brand"navbar-brand">Parkit</h5>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-      
-      <li><a class="text-uppercase"><?php echo $_SESSION["usuario"]["usuario"]?></a></li>
-        <li><a href="#tour">REALIZAR RESERVA</a></li>
-        <li><a href="./Mis_Reserva.php"> MIS RESERVAS</a></li>
+        <li><a href="#myPage">INICIO</a></li>
+        <li><a href="#band">REGISTRO Y LOGIN </a></li>
+        <li><a href="#tour">NOSOTROS</a></li>
         <li><a href="#contact">CONTACTO</a></li>
-        <li id="cerrar"><a href="../../validations/CerrarSession.php">CERRAR SESION</a></li>
       </ul>
-      <br>
       
     </div>
   </div>
 </nav>
 
+<div id="myCarousel" class="carousel slide"data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
 
-<!-- Container (Usuario Section) -->
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="assets/img/estacionamiento1.jpg" alt="New York" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>Bienvenidos</h3>
+          <p>A Parkit reserva tu estacionamiento!</p>
+        </div>      
+      </div>
+
+      <div class="item">
+        <img src="assets/img/estacinamiento2.jpg" alt="Chicago" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>Plazas Automatizadas</h3>
+          <p>A lo largo de todo Chile</p>
+        </div>      
+      </div>
+    
+      <div class="item">
+        <img src="assets/img/estacionamiento5.jpg" alt="Los Angeles" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>Usa Parkit</h3>
+          <p>Registrate Ahora!</p>
+        </div>      
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<!-- Container (Registro Section) -->
 <div id="band" class="container text-center">
-<i id="user"class='fas fa-user-circle' style='font-size:60px;color:black'></i>
-  <h3 class="text-uppercase">Bienvenido:<?php echo $_SESSION["usuario"]["nombre"]?>-<?php echo $_SESSION["usuario"]["apellido"]?>||<?php echo $_SESSION["usuario"]["privilegio"] == 1 ? 'admin' : 'cliente';?></h3>
-  <p class="text-justify text text-capitalize center-block"><h1 class="text-capitalize">nota:</h1>Antes de iniciar a interactuar con el sistema de reserva te dejamos unas intrucciones para su uso,
-     si ya conoces el funcionamiento omite este comentario y sube al siguiente nivel del desarrollo plazas 100% automatizadas del pais.</p>
-  <p><em>No Esperes Mas!!!</em></p>
+  <h3>REGISTRATE AHORA!</h3>
+  <h3>O</h3>
+  <h3>INGRESA YA CON TU CUENTA!</h3>
+  <p><em>No Esperes Mas</em></p>
   <p></p>
   <br>
   <div class="row">
-      <div class="col-lg-12 text-center ">
+      <div class="col-lg-6 ">
           <div id="Registro" class="btn" data-toggle="collapse" data-target="#Registro-collapse">Registro</div>
           <div class="w3-container">
               <div id="Registro-collapse" class="collapse w3-panel w3-card">
                 <p class="text-capitalize">complete el formulario para ser parte de este gran servicio de estacionamientos</p>
-                 <!--aca se inicia el slide de intrucciones para explicar el funcionamiento del sistem de reserva-->
-                 <p class="text-uppercase">instrucciones de uso:</p>
-                
+                  <form id="Registro-form" action="./validations/Registro_code.php" method="post">
+                    <p class="text-justify">NOMBRE:</p><div class="text-justify"><input type="text" name="txtNombre" id="Nombre_usuario" placeholder="Ingrese su Nombre" required></div>
+                    <p class="text-justify">APELLIDO:</p><div class="text-justify"><input type="text" name="txtApellido" id="Apellido_usuario" placeholder="Ingrese su Apellido"required></div>
+                    <p class="text-justify">RUT:(sin puntos solo guion)</p><div class="text-justify"><input type="text" name="txtRut" id="Rut_usuario" placeholder="Ingrese su Rut"required></div>
+                    <p class="text-justify">CORREO:</p><div class="text-justify"><input type="text" name="txtCorreo" id="Correo_usuario" size="30"placeholder="Ingrese su Correo@.com"required></div><br>
+                    <p class="text-justify">NICKNAME:</p><div class="text-justify"><input type="text" name="txtUsuario" id="Correo_usuario" size="30"placeholder="Ingrese su nickname"required></div><br>
+                    <p class="text-justify">NUMERO TELEFONICO:</p><div class="text-justify"><input type="text" name="txtNumero" id="Numero" size="30"placeholder="Ingrese su numero"required></div><br>
+                    <p class="text-justify">PATENTE DE TU VEHICULO:</p><div class="text-justify"><input type="text" name="txtPatente" id="Patente" size="30"placeholder="Ingrese su patente"required></div><br>
+                    <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="txtPass" id="Pass_usuario" placeholder="Ingrese su contraseña"required></div><br>
+                    <p class="text-justify"></p><div class="text-justify text-capitalize" ><input type="checkbox" name="Termino" id="Termino_usuario"required>Usted acepta los terminos y condicion de este servicio</div>
+                    
+                    <button id="btnLimpiar" class="btn btn-block" type="submit">Registar</button>
+                  </form>
+                  
                 </div>
             </div>
           </div>
           <br>
-         
-         
-
+          
+        
+      <div class="col-lg-6 ">
+          <div class="btn btn-dark" data-toggle="collapse" data-target="#Login-collapse">Login</div>
+          <div class="w3-container">
+              <div  id="Login-collapse" class="collapse w3-panel w3-card" >
+                  <p class="text-capitalize">Ingresa Un estacionamieto te estara esperando!!</p>
+                  <form id="Login-form" action="./validations/Validacion_code.php" method="POST">
+                    <p class="text-justify">Username:</p><div class="text-justify"><input type="text" name="txtUsuario" id="Nombre_usuario" size="20"placeholder="Ingrese su Username"  required autofocus></div>
+                    <p class="text-justify">CONSTRASEÑA:</p><div class="text-justify"><input type="password" name="txtPass" id="Nombre_usuario" size="20" placeholder="Ingrese su Contraseña"  required autofocus></div><br>
+                    
+                    <button class="btn btn-block" type="submit">Ingresar</button>
+                  </form>
+                </div>
+            </div>
+          </div>
     </div>
     <br>
     <br>
-    
 </div>
   
 
 <!-- Container (TOUR Section) -->
 <div id="tour" class="bg-1">
   <div class="container">
-    <h3 class="text-center">ESTACIONAMIENTOS</h3>
-    <p class="text-center">El Mejor Servicio De Automatizacion De Estacionamiento
-        <br>Selecciona cualquier estacionamiento</p>
+    <h3 class="text-center">NUESTROS ESTACIONAMIENTOS</h3>
+    <p class="text-center">Plazas Automatizas a lo largo De Chile<br></p>
+   
+    <div class="row text-center">
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img src="assets/img/ejemplo1.jpg"  width="400" height="300">
+          <p><strong>Aeropuerto</strong></p>
 
- <div class="row text-center">
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="../../assets/img/ubi.png" alt="Paris" width="400" height="300">
-          <p class="text-uppercase" ><strong>Estacionamientos Las Condes</strong></p>
-          <button class="btn" data-toggle="modal" data-target="#myModal">Reservar</button>
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img id="oscurecer" src="../../assets/img/ubi.png" alt="New York" width="400" height="300">
-          <p class="text-uppercase" ><strong>Proximamente(Providencia)</strong></p>
-          <button class="btn" data-toggle="modal" data-target="#myModal" disabled>Otoño2020</button>
+          <img src="assets/img/ejemplo4.jpg"  width="400" height="300">
+          <p><strong>Providencia</strong></p>
+         
         </div>
       </div>
       <div class="col-sm-4">
         <div class="thumbnail">
-          <img id="oscurecer"src="../../assets/img/ubi.png" alt="San Francisco" width="400" height="300">
-          <p class="text-uppercase"><strong>Proximamente(Costanera)</strong></p>
-          <button class="btn" data-toggle="modal" data-target="#myModal" disabled>Verano2021</button>
+          <img src="assets/img/ejemplo2.jpg"  width="400" height="300">
+          <p><strong>San Francisco</strong></p>
         </div>
       </div>
     </div>
   </div>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4><span class="glyphicon glyphicon-lock"></span> Reserva</h4>
-        </div>
-        <div class="modal-body">
-          <form id="formRegistro" role="form" action="../../validations/Reserva_code.php" method="post">
-          <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-user"></span class="strong">Hola, la siguiente reserva se realizara al nombre de: </label>
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span> Rut(este campo se completa de manera automatica)</label>
-              <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["usuario"]?>"  name="txtUsuario" readonly >
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span> Rut(este campo se completa de manera automatica)</label>
-              <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["rut"]?>"  name="txtRut" readonly >
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span>Numero de emergencia</label>
-              <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["numero"]?>"  name="txtNumero" readonly >
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class=""></span>Patente del vehiculo </label>
-              <input type="text" class="form-control" id="horasalida" value="<?php echo $_SESSION["usuario"]["patente"]?>"  name="txtPatente" readonly >
-            </div>
-            <div class="form-group">
-              <label for="psw"><span class=""></span> Hora de Entrada</label>
-              <input type="time" class="form-control" id="horaentrada"  min="08:00:00" max="20:00:00" name="txtHora_in" required>
-            </div>
-      
-            <div class="form-group">
-              <label for="psw"><span class=""></span> Fecha Reserva</label>
-              <input type="date" class="form-control" id="horasalida" value="2019-04-01"  min="2019-04-01"  max="2030-04-01" name="txtFecha" required>
-            </div>
-            
-            <h1>MONTO TOTAL DE LA RESERVA: $1000.</h1>
-            
-            
-              <button id="hola" type="submit"  class="btn btn-block">Reservar 
-                <span class="glyphicon glyphicon-ok"></span>
-              </button>
-              
-          </form>
-          
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
-            <span class="glyphicon glyphicon-remove"></span> Cancelar
-          </button>
-          <p><a href="#">Necesitas Ayuda ?</a></p>
-        </div>
-      </div>
-    </div>
-    
-  </div>
+
+</div>
+</div>
 </div>
 
 <!-- Container (Contact Section) -->
@@ -448,7 +482,3 @@ $(document).ready(function(){
 
 </body>
 </html>
-
-
-
-                        

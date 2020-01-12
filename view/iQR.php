@@ -1,13 +1,13 @@
 <?php
 
-    include('./assets/lib/phpqrcode/qrlib.php');
+    include('./../../assets/lib/phpqrcode/qrlib.php');
    
 
     // how to save PNG codes to server
     
-    $tempDir = './temp/';
+    $tempDir = 'qrcode/';
     
-    $codeContents = 'ya cabros esto funciona';
+    $codeContents = 'ya cabros esto funciona :D XD';
     
     // we need to generate filename somehow, 
     // with md5 or with database ID used to obtains $codeContents...
